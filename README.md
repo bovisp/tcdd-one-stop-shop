@@ -1,3 +1,48 @@
+# Learning management platform
+
+## Requirements
+
+* PHP 7.3
+* Composer
+* MySQL
+* Apache or nginx
+* node v12.18.3 / npm 6.14.7
+
+
+## Development setup
+
+If you are using macOS, it is highly recommended using Laravel Valet as your development environment. Check [here](https://laravel.com/docs/6.x/valet#installation) how to install it. Remember to use the PHP version listed in #requirements.
+
+### Composer
+
+Install composer following the [installation guide](https://getcomposer.org/doc/00-intro.md#installation-linux-unix-macos).
+
+### Node.js
+
+For macOS, if you are using Laravel Valet do the following:
+```shell script
+brew install nvm
+
+nvm install lts/erbium
+
+nvm alias default lts/erbium
+```
+
+For a different setup, please check the [Node.js download options](https://nodejs.org/en/download/releases/).
+
+
+## Project Installation
+
+1. Clone the project from the [git repository](https://github.com/bovisp/tcdd-one-stop-shop)
+2. Create a MySQL (or MariaDB) database for the project
+3. Copy `.env.example` to create your `.env` file
+    * Update the database variables to match your local database
+4. Run `composer install` to install dependencies
+5. Run `php artisan migrate` to migrate the database tables
+    * This will insert roles, a test organization and a few users to get you started
+6. Run `npm run dev` to compile assets
+7. (optional) If you are not using Laravel Valet, run `php artisan serve` to serve the application)
+
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
 <p align="center">
