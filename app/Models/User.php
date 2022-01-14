@@ -2,8 +2,9 @@
 
 namespace App\Models;
 
-use Illuminate\Contracts\Auth\MustVerifyEmail;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
+use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
@@ -17,23 +18,27 @@ class User extends Authenticatable
     use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
+    use SoftDeletes;
+    use \Awobaz\Compoships\Compoships;
 
-    /**
-     * The attributes that are mass assignable.
-     *
-     * @var string[]
-     */
+    public function getPassword()
+    {
+        return $this->password;
+    }
+
+    /** @var string[] */
     protected $fillable = [
         'name',
         'email',
         'password',
+        'role_id',
+        'is_admin',
+        'unhashed_password'
     ];
 
-    /**
-     * The attributes that should be hidden for serialization.
-     *
-     * @var array
-     */
+    protected $visible = ['id', 'name', 'email', 'role_id', 'section_id', 'is_admin'];
+
+    /** @var string[] */
     protected $hidden = [
         'password',
         'remember_token',
@@ -41,21 +46,57 @@ class User extends Authenticatable
         'two_factor_secret',
     ];
 
-    /**
-     * The attributes that should be cast.
-     *
-     * @var array
-     */
+    /** @var string[] */
     protected $casts = [
         'email_verified_at' => 'datetime',
+        'is_admin' => 'boolean'
     ];
 
-    /**
-     * The accessors to append to the model's array form.
-     *
-     * @var array
-     */
+    /** @var string[]  */
     protected $appends = [
         'profile_photo_url',
     ];
+
+    public function role() : BelongsTo
+    {
+        return $this->belongsTo(Role::class);
+    }
+
+    public function section() : BelongsTo
+    {
+        return $this->belongsTo(Section::class);
+    }
+
+    public function position() : BelongsTo
+    {
+        return $this->belongsTo(Position::class, ['section_id', 'role_id'], ['section_id', 'role_id']);
+    }
+
+    public function isAdmin() : bool
+    {
+        return $this->is_admin;
+    }
+
+    public function hasSection() : bool
+    {
+        return (bool) $this->section_id;
+    }
+
+    public function hasRole() : bool
+    {
+        return (bool) $this->role_id;
+    }
+
+    public function canAccessReportingStructureForUser(self $user) : bool
+    {
+        if ($this->isAdmin()) {
+            return true;
+        }
+
+        if (! every($this->hasRole(), $this->hasSection())) {
+            return false;
+        }
+
+        return $this->position->hierarchy_position < $user->position->hierarchy_position;
+    }
 }

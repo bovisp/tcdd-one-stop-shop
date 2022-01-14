@@ -2,37 +2,37 @@
 
 namespace App\Console\Commands;
 
+use App\Models\User;
 use Illuminate\Console\Command;
+use Illuminate\Support\Str;
 
 class CreateAdminAccount extends Command
 {
     /** @var string */
-    protected $signature = 'user:create-admin-account {--email}';
+    protected $signature = 'user:create-admin-account {--email=} {--name=}';
 
-    /**
-     * The console command description.
-     *
-     * @var string
-     */
-    protected $description = 'Command description';
+    /** @var string */
+    protected $description = 'Creates admin account for a given email';
 
-    /**
-     * Create a new command instance.
-     *
-     * @return void
-     */
-    public function __construct()
+    public function handle() : int
     {
-        parent::__construct();
-    }
+        if (! $email = $this->option('email')) {
+            $this->error('E-mail not provided!');
 
-    /**
-     * Execute the console command.
-     *
-     * @return int
-     */
-    public function handle()
-    {
+            return Command::FAILURE;
+        }
+
+        $password = Str::random(8);
+
+        User::create([
+            'name'     => $this->option('name') ?? 'Admin',
+            'email'    => $email,
+            'password' => bcrypt($password),
+            'is_admin' => true
+        ]);
+
+        $this->info('password: ' . $password);
+
         return Command::SUCCESS;
     }
 }

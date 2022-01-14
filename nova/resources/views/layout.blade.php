@@ -34,13 +34,7 @@
     <div id="nova">
         <div v-cloak class="flex min-h-screen">
             <!-- Sidebar -->
-            <div class="flex-none pt-header min-h-screen w-sidebar bg-grad-sidebar px-6">
-                <a href="{{ \Laravel\Nova\Nova::path() }}">
-                    <div class="absolute pin-t pin-l pin-r bg-logo flex items-center w-sidebar h-header px-6 text-white">
-                       @include('nova::partials.logo')
-                    </div>
-                </a>
-
+            <div class="flex-none min-h-screen w-sidebar bg-grad-sidebar p-6">
                 @foreach (\Laravel\Nova\Nova::availableTools(request()) as $tool)
                     {!! $tool->renderNavigation() !!}
                 @endforeach
@@ -56,16 +50,10 @@
                     @if (count(\Laravel\Nova\Nova::globallySearchableResources(request())) > 0)
                         <global-search dusk="global-search-component"></global-search>
                     @endif
-
-                    <dropdown class="ml-auto h-9 flex items-center dropdown-right">
-                        @include('nova::partials.user')
-                    </dropdown>
                 </div>
 
                 <div data-testid="content" class="px-view py-view mx-auto">
                     @yield('content')
-
-                    @include('nova::partials.footer')
                 </div>
             </div>
         </div>
