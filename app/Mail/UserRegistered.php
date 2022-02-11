@@ -28,7 +28,7 @@ class UserRegistered extends Mailable
         return $this->view('mail.welcome', [
             'name' => $this->user->name,
             'password' => $this->password,
-            'link' => env('APP_URL')
+            'link' => env('APP_URL'),
         ]);
     }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Nova;
 
+use App\Rules\UserExistsOnMoodle;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
@@ -14,29 +15,22 @@ class User extends Resource
     public static $model = \App\Models\User::class;
 
     /** @var string */
-    public static $title = 'name';
+    public static $title = 'email';
 
     /** @var string[] */
     public static $search = [
-        'id', 'name', 'email', 'role_id'
+        'id', 'email', 'role_id'
     ];
 
     public function fields(Request $request) : array
     {
         return [
             ID::make()->sortable(),
-            Text::make('Name')
-                ->sortable()
-                ->rules('required', 'max:255'),
             Text::make('Email')
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
-                ->creationRules('unique:users,email')
+                ->creationRules(['unique:users,email', new UserExistsOnMoodle()])
                 ->updateRules('unique:users,email,{{resourceId}}'),
-            Password::make('Password')
-                ->onlyOnForms()
-                ->creationRules('required', 'string', 'min:8')
-                ->updateRules('nullable', 'string', 'min:8'),
             BelongsTo::make('Role')->creationRules('required'),
             BelongsTo::make('Section')->creationRules('required'),
         ];

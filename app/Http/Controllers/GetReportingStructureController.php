@@ -21,7 +21,7 @@ class GetReportingStructureController extends Controller
     public function __invoke(UserReportingStructureRequest $request, User $user)
     {
         /** @var User $user */
-        $user = User::query()->with(['role', 'section'])->find($user->id);
+        $user = User::query()->with(['role', 'section', 'moodleInfo'])->find($user->id);
 
         $reportingStructure = $this->repo->getUserReportingStructure($user);
 

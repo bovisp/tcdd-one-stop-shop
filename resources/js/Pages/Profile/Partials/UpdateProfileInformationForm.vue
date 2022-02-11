@@ -12,8 +12,14 @@
             <!-- Name -->
             <div class="col-span-6 sm:col-span-4">
                 <jet-label for="name" value="Name" />
-                <jet-input id="name" type="text" class="mt-1 block w-full" v-model="form.name" autocomplete="name" />
-                <jet-input-error :message="form.errors.name" class="mt-2" />
+                <jet-input id="name" type="text" class="mt-1 block w-full"
+                   v-model="form.name"
+                   :disabled="true"
+                   autocomplete="name"
+                />
+                <p class="mt-2 text-sm text-gray-500">
+                    If you want to update your name, please do it on Moodle.
+                </p>
             </div>
 
             <!-- Email -->
@@ -57,13 +63,13 @@
             JetSecondaryButton,
         },
 
-        props: ['user'],
+        props: ['user', 'username'],
 
         data() {
             return {
                 form: this.$inertia.form({
                     _method: 'PUT',
-                    name: this.user.name,
+                    name: this.username,
                     email: this.user.email,
                     photo: null,
                 }),

@@ -2,20 +2,19 @@
 
 namespace App\Models;
 
+use App\Models\Moodle\UserInformation;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Foundation\Auth\User as Authenticatable;
 use Illuminate\Notifications\Notifiable;
 use Laravel\Fortify\TwoFactorAuthenticatable;
-use Laravel\Jetstream\HasProfilePhoto;
 use Laravel\Sanctum\HasApiTokens;
 
 class User extends Authenticatable
 {
     use HasApiTokens;
     use HasFactory;
-    use HasProfilePhoto;
     use Notifiable;
     use TwoFactorAuthenticatable;
     use SoftDeletes;
@@ -28,12 +27,12 @@ class User extends Authenticatable
 
     /** @var string[] */
     protected $fillable = [
-        'name',
         'email',
         'password',
         'role_id',
         'is_admin',
-        'unhashed_password'
+        'unhashed_password',
+        'moodle_user_id'
     ];
 
     protected $visible = ['id', 'name', 'email', 'role_id', 'section_id', 'is_admin'];
@@ -70,6 +69,20 @@ class User extends Authenticatable
     public function position() : BelongsTo
     {
         return $this->belongsTo(Position::class, ['section_id', 'role_id'], ['section_id', 'role_id']);
+    }
+
+    public function moodleInfo() : BelongsTo
+    {
+        return $this->belongsTo(UserInformation::class, 'moodle_user_id');
+    }
+
+    public function getNameAttribute() : ?string
+    {
+        if (! $this->moodleInfo) {
+            return null;
+        }
+
+        return implode(' ', [$this->moodleInfo->firstname, $this->moodleInfo->lastname]);
     }
 
     public function isAdmin() : bool

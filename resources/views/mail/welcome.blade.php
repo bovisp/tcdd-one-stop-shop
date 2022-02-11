@@ -6,7 +6,7 @@
 
     <p>
 
-        An account was created for you on the learning management application.
+        Welcome to the learning management application!
 
     </p>
 
