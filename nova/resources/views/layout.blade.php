@@ -46,10 +46,6 @@
                     <a v-if="@json(\Laravel\Nova\Nova::name() !== null)" href="{{ \Illuminate\Support\Facades\Config::get('nova.url') }}" class="no-underline dim font-bold text-90 mr-6">
                         {{ \Laravel\Nova\Nova::name() }}
                     </a>
-
-                    @if (count(\Laravel\Nova\Nova::globallySearchableResources(request())) > 0)
-                        <global-search dusk="global-search-component"></global-search>
-                    @endif
                 </div>
 
                 <div data-testid="content" class="px-view py-view mx-auto">

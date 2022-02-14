@@ -4,7 +4,6 @@ namespace App\Observers;
 
 use App\Mail\UserRegistered;
 use App\Models\Moodle\UserInformation;
-use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Str;
@@ -13,7 +12,7 @@ class UserObserver
 {
     public function creating($user) : void
     {
-        if (! $user->moodle_user_id) {
+        if (! $user->moodle_user_id && ! $user->is_admin) {
             $moodleUser = UserInformation::query()
                 ->where('email', '=', $user->email)
                 ->where('deleted', '=', false)

@@ -42,7 +42,7 @@
                                                 class="px-4 py-1"
                                             >
                                                 <a :href="`/users/${user.id}/reporting-structure`" class="text-sm text-gray-700 underline">
-                                                    {{ user.name }}
+                                                    {{ [user.moodle_info.firstname, user.moodle_info.lastname].join(' ') }}
                                                 </a>
                                             </li>
                                         </ul>
@@ -76,8 +76,5 @@ export default defineComponent({
         JetSectionBorder,
         Link
     },
-    created() {
-        console.log(this.reporting_structure)
-    }
  })
 </script>

@@ -27,7 +27,7 @@ class GetReportingStructureController extends Controller
 
         return Inertia::render('ReportingStructure', [
             'profile' => UserResource::fromUser($user),
-            'reporting_structure' => $reportingStructure->toArray(),
+            'reporting_structure' => $reportingStructure->all(),
         ]);
     }
 }

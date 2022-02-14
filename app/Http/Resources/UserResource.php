@@ -29,7 +29,12 @@ class UserResource implements Arrayable
 
     public static function fromUser(User $user) : self
     {
-        return new self($user->moodleInfo->name, $user->email, optional($user->section)->name, optional($user->role)->name);
+        return new self(
+            $user->name ?? $user->email,
+            $user->email,
+            optional($user->section)->name,
+            optional($user->role)->name
+        );
     }
 
     public function toArray() : array

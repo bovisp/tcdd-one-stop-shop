@@ -16,7 +16,7 @@ class EloquentUserRepository implements UserRepositoryContract
         return $user->section
             ->positions()
             ->getQuery()
-            ->with(['users', 'role'])
+            ->with(['users.moodleInfo', 'role'])
             ->orderBy('hierarchy_position')
             ->get();
     }

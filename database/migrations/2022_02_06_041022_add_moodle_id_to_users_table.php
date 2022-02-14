@@ -9,7 +9,9 @@ class AddMoodleIdToUsersTable extends Migration
     public function up() : void
     {
         Schema::table('users', function (Blueprint $table) {
-            $table->unsignedBigInteger('moodle_user_id')->after('id');
+            $table->unsignedBigInteger('moodle_user_id')
+                ->nullable()
+                ->after('id');
             $table->dropColumn('name');
         });
     }

@@ -8,6 +8,7 @@
         "php": "^7.3|^8.0",
         "awobaz/compoships": "^2.1",
         "fruitcake/laravel-cors": "^2.0",
+        "gkermer/nova-text-auto-complete": "^0.0.5",
         "guzzlehttp/guzzle": "^7.0.1",
         "inertiajs/inertia-laravel": "^0.4.3",
         "laravel/framework": "^8.65",

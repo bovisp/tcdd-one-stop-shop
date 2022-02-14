@@ -2,12 +2,12 @@
 
 namespace App\Nova;
 
+use App\Models\Moodle\UserInformation;
 use App\Rules\UserExistsOnMoodle;
+use Gkermer\TextAutoComplete\TextAutoComplete;
 use Illuminate\Http\Request;
 use Laravel\Nova\Fields\BelongsTo;
 use Laravel\Nova\Fields\ID;
-use Laravel\Nova\Fields\Password;
-use Laravel\Nova\Fields\Text;
 
 class User extends Resource
 {
@@ -26,7 +26,16 @@ class User extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Email')
+            TextAutoComplete::make('Email')
+                ->items(function ($search) {
+                    return UserInformation::query()
+                        ->where('email', 'like', '%' . $search . '%')
+                        ->where('deleted', '=', false)
+                        ->where('suspended', '=', false)
+                        ->where('confirmed', '=', true)
+                        ->get()
+                        ->pluck('email');
+                })
                 ->sortable()
                 ->rules('required', 'email', 'max:254')
                 ->creationRules(['unique:users,email', new UserExistsOnMoodle()])

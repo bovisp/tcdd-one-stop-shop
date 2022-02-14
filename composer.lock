@@ -4,7 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-    "content-hash": "a7aedd5d9253e1c3bfc040640a87b324",
+    "content-hash": "f05a349e687e1ccee43a943f9f6fd138",
     "packages": [
         {
             "name": "asm89/stack-cors",
@@ -1198,6 +1198,60 @@
                 }
             ],
             "time": "2021-04-26T11:24:25+00:00"
+        },
+        {
+            "name": "gkermer/nova-text-auto-complete",
+            "version": "0.0.5",
+            "source": {
+                "type": "git",
+                "url": "https://github.com/gkermer/nova-text-auto-complete.git",
+                "reference": "23a2b5ee16eef2a5784a0828c0975851521e4bf2"
+            },
+            "dist": {
+                "type": "zip",
+                "url": "https://api.github.com/repos/gkermer/nova-text-auto-complete/zipball/23a2b5ee16eef2a5784a0828c0975851521e4bf2",
+                "reference": "23a2b5ee16eef2a5784a0828c0975851521e4bf2",
+                "shasum": ""
+            },
+            "require": {
+                "php": ">=7.1.0"
+            },
+            "type": "library",
+            "extra": {
+                "laravel": {
+                    "providers": [
+                        "Gkermer\\TextAutoComplete\\FieldServiceProvider"
+                    ]
+                }
+            },
+            "autoload": {
+                "psr-4": {
+                    "Gkermer\\TextAutoComplete\\": "src/"
+                }
+            },
+            "notification-url": "https://packagist.org/downloads/",
+            "license": [
+                "MIT"
+            ],
+            "authors": [
+                {
+                    "name": "Gabriel Kermer",
+                    "role": "Developer"
+                }
+            ],
+            "description": "A Laravel Nova text autocomplete field.",
+            "keywords": [
+                "auto-complete",
+                "autocomplete",
+                "laravel",
+                "nova",
+                "text"
+            ],
+            "support": {
+                "issues": "https://github.com/gkermer/nova-text-auto-complete/issues",
+                "source": "https://github.com/gkermer/nova-text-auto-complete/tree/master"
+            },
+            "time": "2020-08-28T14:44:56+00:00"
         },
         {
             "name": "graham-campbell/result-type",

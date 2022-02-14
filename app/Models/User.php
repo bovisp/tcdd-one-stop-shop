@@ -35,7 +35,7 @@ class User extends Authenticatable
         'moodle_user_id'
     ];
 
-    protected $visible = ['id', 'name', 'email', 'role_id', 'section_id', 'is_admin'];
+    protected $visible = ['id', 'name', 'email', 'role_id', 'section_id', 'is_admin', 'moodleInfo'];
 
     /** @var string[] */
     protected $hidden = [
@@ -79,7 +79,7 @@ class User extends Authenticatable
     public function getNameAttribute() : ?string
     {
         if (! $this->moodleInfo) {
-            return null;
+            return $this->email;
         }
 
         return implode(' ', [$this->moodleInfo->firstname, $this->moodleInfo->lastname]);
@@ -108,6 +108,10 @@ class User extends Authenticatable
 
         if (! every($this->hasRole(), $this->hasSection())) {
             return false;
+        }
+
+        if ($this->is($user)) {
+            return true;
         }
 
         return $this->position->hierarchy_position < $user->position->hierarchy_position;
