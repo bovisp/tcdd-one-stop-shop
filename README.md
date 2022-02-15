@@ -42,7 +42,7 @@ For a different setup, please check the [Node.js download options](https://nodej
     * This will insert roles, a test organization and a few users to get you started
 6. Run `npm run dev` to compile assets
 7. (optional) If you are not using Laravel Valet, run `php artisan serve` to serve the application)
-8. command to add admin: php artisan user:create-admin-account {--email=} {--name=}
+8. command to add admin: php artisan user:create-admin-account {--email=}
 
 <p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400"></a></p>
 
