@@ -3,6 +3,7 @@
 namespace App\Nova;
 
 use App\Models\Moodle\UserInformation;
+use App\Models\User as EloquentUser;
 use App\Rules\UserExistsOnMoodle;
 use Gkermer\TextAutoComplete\TextAutoComplete;
 use Illuminate\Http\Request;
@@ -24,12 +25,15 @@ class User extends Resource
 
     public function fields(Request $request) : array
     {
+        $registeredEmails = EloquentUser::all()->pluck('email')->toArray();
+
         return [
             ID::make()->sortable(),
             TextAutoComplete::make('Email')
-                ->items(function ($search) {
+                ->items(function ($search) use ($registeredEmails) {
                     return UserInformation::query()
                         ->where('email', 'like', '%' . $search . '%')
+                        ->whereNotIn('email', $registeredEmails)
                         ->where('deleted', '=', false)
                         ->where('suspended', '=', false)
                         ->where('confirmed', '=', true)
