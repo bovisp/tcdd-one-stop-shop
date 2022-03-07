@@ -2,17 +2,32 @@
 
 namespace Database\Seeders;
 
+use App\Models\Support\Language;
+use App\Models\Support\Quarter;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    /**
-     * Seed the application's database.
-     *
-     * @return void
-     */
-    public function run()
+    public function run() : void
     {
-        // \App\Models\User::factory(10)->create();
+        $languages = [
+            ['name' => 'English'],
+            ['name' => 'French'],
+        ];
+
+        $quarters = [
+            ['name' => 'Q1'],
+            ['name' => 'Q2'],
+            ['name' => 'Q3'],
+            ['name' => 'Q4'],
+        ];
+
+        foreach ($languages as $language) {
+            Language::query()->create($language);
+        }
+
+        foreach ($quarters as $quarter) {
+            Quarter::query()->create($quarter);
+        }
     }
 }

@@ -22,6 +22,12 @@
                                 <jet-nav-link :href="route('dashboard')" :active="route().current('dashboard')">
                                     Dashboard
                                 </jet-nav-link>
+                                <jet-nav-link
+                                    :href="route('webinar-attendance.dashboard')"
+                                    :active="route().current('webinar-attendance.dashboard')"
+                                >
+                                    Webinar attendance
+                                </jet-nav-link>
                             </div>
                         </div>
 
@@ -254,13 +260,13 @@
 </template>
 
 <script>
-    import { defineComponent } from 'vue'
-    import JetApplicationMark from '@/Jetstream/ApplicationMark.vue'
-    import JetBanner from '@/Jetstream/Banner.vue'
-    import JetDropdown from '@/Jetstream/Dropdown.vue'
-    import JetDropdownLink from '@/Jetstream/DropdownLink.vue'
-    import JetNavLink from '@/Jetstream/NavLink.vue'
-    import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue'
+    import { defineComponent } from 'vue';
+    import JetApplicationMark from '@/Jetstream/ApplicationMark.vue';
+    import JetBanner from '@/Jetstream/Banner.vue';
+    import JetDropdown from '@/Jetstream/Dropdown.vue';
+    import JetDropdownLink from '@/Jetstream/DropdownLink.vue';
+    import JetNavLink from '@/Jetstream/NavLink.vue';
+    import JetResponsiveNavLink from '@/Jetstream/ResponsiveNavLink.vue';
     import { Head, Link } from '@inertiajs/inertia-vue3';
 
     export default defineComponent({

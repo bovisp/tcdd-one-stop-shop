@@ -1,0 +1,95 @@
+<template>
+
+    <div class="flex w-full items-end">
+        <div class="flex-1">
+            <jet-label for="fiscal-year--filter" value="Fiscal year" />
+            <Dropdown
+                :items="fiscalYears"
+                :initial-selection="selected.fiscalYears"
+                title="Fiscal Year"
+                @change="setFiscalYears"
+            />
+        </div>
+        <div class="ml-4 flex-1 items-end">
+            <jet-label for="quarter--filter" value="Quarter" />
+            <Dropdown
+                :items="quarters"
+                :initial-selection="selected.quarters"
+                title="Quarter"
+                @change="setQuarters"
+            />
+        </div>
+        <div class="ml-4 flex-1">
+            <jet-label for="language--filter" value="Language" />
+            <Dropdown
+                :items="languages"
+                :initial-selection="selected.languages"
+                title="Language"
+                @change="setLanguages"
+            />
+        </div>
+        <div class="ml-4 flex items-end">
+            <button class="h-10 bg-gray-200 px-2 py-3 flex items-center rounded" @click="apply">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6 text-gray-600" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+                    <path stroke-linecap="round" stroke-linejoin="round" d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+                </svg>
+            </button>
+        </div>
+    </div>
+</template>
+
+<script>
+import JetButton from '@/Jetstream/Button.vue';
+import JetDropdown from '@/Jetstream/Dropdown.vue';
+import Dropdown from './Dropdown';
+import JetDropdownLink from '@/Jetstream/DropdownLink.vue';
+import JetInput from '@/Jetstream/Input.vue';
+import JetLabel from '@/Jetstream/Label.vue';
+
+export default {
+    name: 'WebinarAttendanceFilter',
+
+    props: ['filters', 'fiscalYears', 'languages', 'quarters'],
+
+    components: {
+        JetButton,
+        JetDropdown,
+        JetDropdownLink,
+        JetInput,
+        JetLabel,
+        Dropdown
+    },
+
+    data() {
+        return {
+            selected: {
+                fiscalYears: this.filters.fiscal_years,
+                quarters: this.filters.quarters,
+                languages: this.filters.languages
+            },
+        };
+    },
+
+    methods: {
+        apply() {
+            this.$emit('apply', {
+                fiscalYear: this.selected.fiscalYears.join(','),
+                quarter: this.selected.quarters.join(','),
+                language: this.selected.languages.join(',')
+            });
+        },
+
+        setFiscalYears(years) {
+            this.selected.fiscalYears = years;
+        },
+
+        setQuarters(quarters) {
+            this.selected.quarters = quarters;
+        },
+
+        setLanguages(languages) {
+            this.selected.languages = languages;
+        }
+    }
+}
+</script>

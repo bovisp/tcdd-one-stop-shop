@@ -1,6 +1,8 @@
 <?php
 
 use App\Http\Controllers\GetReportingStructureController;
+use App\Http\Controllers\GetWebinarDashboardController;
+use App\Http\Controllers\WebinarAttendanceController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -27,4 +29,10 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     })->name('dashboard');
 
     Route::get('/users/{user}/reporting-structure', GetReportingStructureController::class);
+
+    Route::resource('webinar-attendance', WebinarAttendanceController::class)
+        ->except('show', 'index', '');
+
+    Route::get('webinar-attendance/dashboard', GetWebinarDashboardController::class)
+        ->name('webinar-attendance.dashboard');
 });
