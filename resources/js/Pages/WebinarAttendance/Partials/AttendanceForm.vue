@@ -6,16 +6,6 @@
 
         <template #form>
             <div class="col-span-12">
-                <jet-label for="reference_code" value="Reference Code" />
-                <jet-input
-                    id="reference_code"
-                    type="text"
-                    class="mt-1 block w-full"
-                    v-model="form.reference_code"
-                />
-            </div>
-
-            <div class="col-span-12">
                 <jet-label for="fiscal_year" value="Fiscal year" />
                 <select
                     id="fiscal_year"
@@ -142,7 +132,6 @@ export default {
     data() {
         return {
             form: {
-                reference_code: '',
                 fiscal_year_id: '',
                 quarter_id: '',
                 attendance: [
