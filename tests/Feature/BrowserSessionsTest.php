@@ -18,6 +18,6 @@ class BrowserSessionsTest extends TestCase
             'password' => 'password',
         ]);
 
-        $response->assertSessionHasNoErrors();
+        $response->assertSessionHasErrors();
     }
 }

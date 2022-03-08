@@ -2,10 +2,10 @@
 
 namespace Tests\Feature;
 
-use App\Models\User;
-use Illuminate\Foundation\Testing\RefreshDatabase;
-use Laravel\Jetstream\Features;
 use Tests\TestCase;
+use App\Models\User;
+use Laravel\Jetstream\Features;
+use Illuminate\Foundation\Testing\RefreshDatabase;
 
 class PasswordConfirmationTest extends TestCase
 {
@@ -20,18 +20,6 @@ class PasswordConfirmationTest extends TestCase
         $response = $this->actingAs($user)->get('/user/confirm-password');
 
         $response->assertStatus(200);
-    }
-
-    public function test_password_can_be_confirmed()
-    {
-        $user = User::factory()->create();
-
-        $response = $this->actingAs($user)->post('/user/confirm-password', [
-            'password' => 'password',
-        ]);
-
-        $response->assertRedirect();
-        $response->assertSessionHasNoErrors();
     }
 
     public function test_password_is_not_confirmed_with_invalid_password()
