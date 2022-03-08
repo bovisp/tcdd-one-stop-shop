@@ -1,30 +1,30 @@
 <template>
     <jet-form-section @submitted="updateProfileInformation">
         <template #title>
-            Profile Information
+            {{ $t('profile_information') }}
         </template>
 
         <template #description>
-            Update your account's profile information and email address.
+            {{ $t('update_account') }}
         </template>
 
         <template #form>
             <!-- Name -->
             <div class="col-span-6 sm:col-span-4">
-                <jet-label for="name" value="Name" />
+                <jet-label for="name" :value="$t('name')" />
                 <jet-input id="name" type="text" class="mt-1 block w-full"
                    v-model="form.name"
                    :disabled="true"
                    autocomplete="name"
                 />
                 <p class="mt-2 text-sm text-gray-500">
-                    If you want to update your name, please do it on Moodle.
+                    {{ $t('update_name') }}
                 </p>
             </div>
 
             <!-- Email -->
             <div class="col-span-6 sm:col-span-4">
-                <jet-label for="email" value="Email" />
+                <jet-label for="email" :value="$t('email')" />
                 <jet-input id="email" type="email" class="mt-1 block w-full" v-model="form.email" />
                 <jet-input-error :message="form.errors.email" class="mt-2" />
             </div>
@@ -32,11 +32,11 @@
 
         <template #actions>
             <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-                Saved.
+                {{ $t('saved') }}
             </jet-action-message>
 
             <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
+                {{ $t('save') }}
             </jet-button>
         </template>
     </jet-form-section>

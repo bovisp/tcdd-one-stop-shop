@@ -9,19 +9,19 @@
                                 scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                             >
-                                Fiscal Year
+                                {{ $t('fiscal_year') }}
                             </th>
                             <th
                                 scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                             >
-                                Quarter
+                                {{ $t('quarter') }}
                             </th>
                             <th
                                 scope="col"
                                 class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
                             >
-                                Attendance
+                                {{ $t('attendance') }}
                             </th>
                         </tr>
                     </thead>
@@ -41,7 +41,7 @@
                             <td
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                             >
-                                Total
+                                {{ $t('total') }}
                             </td>
                             <td></td>
                             <td class="px-6 py-3 font-bold">
@@ -64,7 +64,6 @@ export default {
     data() {
         return {
             total: this.items.map(item => item.total).reduce((acc, value) => acc + value, 0),
-            // total: 0,
         }
     }
 }

@@ -4,13 +4,8 @@
             <div>
                 <jet-application-logo class="block h-12 w-auto" />
             </div>
-
-            <div class="mt-8 text-2xl">
-                Welcome to Learning manager application
-            </div>
-
-            <div class="mt-6 text-gray-500">
-                Here you'll find information about our courses catalog.
+            <div class="my-8 text-2xl">
+                {{ $t('welcome') }}!
             </div>
         </div>
     </div>

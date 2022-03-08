@@ -2,7 +2,7 @@
     <app-layout title="Webinar Attendance">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Webinar attendance
+                {{ $t('webinar_attendance') }}
             </h2>
         </template>
 

@@ -9,13 +9,13 @@
                                 scope="col"
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                             >
-                                Fiscal Year
+                                {{ $t('fiscal_year') }}
                             </th>
                             <th
                                 scope="col"
                                 class="px-6 py-3 text-right text-xs font-medium text-gray-500 uppercase tracking-wider"
                             >
-                                Attendance
+                                {{ $t('attendance') }}
                             </th>
                         </tr>
                     </thead>
@@ -32,7 +32,7 @@
                             <td
                                 class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider"
                             >
-                                Total
+                                {{ $t('total') }}
                             </td>
                             <td class="px-6 py-3 font-bold">
                                 <div class="text-sm text-right text-gray-900">{{ total }}</div>

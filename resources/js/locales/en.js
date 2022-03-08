@@ -1,0 +1,61 @@
+export default {
+    dashboard: 'Dashboard',
+    webinar_attendance: 'Webinar Attendance',
+    attendance: 'Attendance',
+    add_attendance: 'Add webinar attendance',
+    graphical_view: 'Graphical view',
+    tabular_view: 'Tabular view',
+    fiscal_year: 'Fiscal Year',
+    quarter: 'Quarter',
+    language: 'Language',
+    reload: 'Reload',
+    total: 'Total',
+    by_fiscal_year: 'By Fiscal Year',
+    by_language: 'By Language',
+    name: 'Name',
+    save: 'Save',
+    login: 'Login',
+    logout: 'Logout',
+    welcome: 'Welcome',
+    account_management: 'Account Management',
+    profile: 'Profile',
+    my_reporting_structure: 'My Reporting structure',
+    reporting_structure: 'Reporting structure',
+    profile_information: 'Profile Information',
+    update_account: 'Update your account\'s profile information and email address.',
+    update_name: 'If you want to update your name, please do it on Moodle.',
+    email: 'E-mail',
+    saved: 'Saved',
+    update_password: 'Update password',
+    password_description: 'Ensure your account is using a long, random password to stay secure.',
+    current_password: 'Current Password',
+    new_password: 'New Password',
+    confirm_password: 'Confirm Password',
+    browser_sessions: 'Browser Sessions',
+    browser_description: 'Manage and log out your active sessions on other browsers and devices.',
+    browser_instructions: 'If necessary, you may log out of all of your other browser sessions across all of your devices. ' +
+        'Some of your recent sessions are listed below; however, this list may not be exhaustive. ' +
+        'If you feel your account has been compromised, you should also update your password.',
+    browser_logout: 'Log Out Other Browser Sessions',
+    this_device: 'This device',
+    last_active: 'Last active',
+    cancel: 'Cancel',
+    please_confirm_password: 'Please enter your password to confirm you would like to log out of your other browser ' +
+        'sessions across all of your devices.',
+    delete_account: 'Delete Account',
+    delete_permanently: 'Permanently delete your account.',
+    delete_account_disclaimer: 'Once your account is deleted, all of its resources and data will be permanently deleted. ' +
+        'Before deleting your account, please download any data or information that you wish to retain.',
+    delete_account_confirmation: 'Are you sure you want to delete your account? Once your account is deleted, all of its ' +
+        'resources and data will be permanently deleted. Please enter your password to confirm you would like to permanently delete your account.',
+    password: 'Password',
+    remember_me: 'Remember me',
+    forgot_password: 'Forgot your password?',
+    forgot_password_message: 'Forgot your password? No problem. Just let us know your email address and we will email ' +
+        'you a password reset link that will allow you to choose a new one.',
+    email_reset: 'Email Password Reset Link',
+    user_info: '{name}\'s information',
+    user_information: 'User information'
+
+
+};

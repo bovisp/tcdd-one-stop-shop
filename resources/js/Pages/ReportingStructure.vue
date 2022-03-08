@@ -2,7 +2,7 @@
     <app-layout title="User Profile">
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                {{ profile.name }}'s info
+                {{ $t('user_info', { name: profile.name })  }}
             </h2>
         </template>
 
@@ -11,13 +11,13 @@
                 <div>
                     <jet-action-section>
                         <template #title>
-                            User information
+                            {{ $t('user_information') }}
                         </template>
 
                         <template #content>
                             <div class="max-w-xl text-sm text-gray-600">
-                                <p>Name: {{ profile.name }}</p>
-                                <p>E-mail: {{ profile.email }}</p>
+                                <p>{{ $t('name') }}: {{ profile.name }}</p>
+                                <p>{{ $t('email') }}: {{ profile.email }}</p>
                                 <p>Section: {{ profile.section || '---' }}</p>
                             </div>
                         </template>
@@ -27,7 +27,7 @@
 
                     <jet-action-section>
                         <template #title>
-                            Reporting Structure
+                            {{ $t('reporting_structure') }}
                         </template>
 
                         <template #content>

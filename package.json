@@ -27,7 +27,9 @@
     },
     "dependencies": {
         "@headlessui/vue": "^1.5.0",
+        "@intlify/vue-i18n-loader": "^4.1.0",
         "apexcharts": "^3.33.2",
+        "vue-i18n": "^9.2.0-beta.31",
         "vue3-apexcharts": "^1.4.1"
     }
 }

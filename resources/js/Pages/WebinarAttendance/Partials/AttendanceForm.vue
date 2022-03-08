@@ -1,15 +1,16 @@
 <template>
     <jet-form-section  @submitted="submit">
         <template #title>
-            Register new webinar attendance
+            {{ $t('add_attendance') }}
         </template>
 
         <template #form>
             <div class="col-span-12">
-                <jet-label for="fiscal_year" value="Fiscal year" />
+                <jet-label for="fiscal_year" :value="$t('fiscal_year')" />
                 <select
                     id="fiscal_year"
-                    class="mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
+                    class="mt-1 w-full border-gray-300 focus:border-indigo-300
+                        focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                     name="fiscal_year"
                     v-model="form.fiscal_year_id"
                 >
@@ -25,7 +26,7 @@
             </div>
 
             <div class="col-span-12">
-                <jet-label for="quarter" value="Quarter" />
+                <jet-label for="quarter" :value="$t('quarter')" />
                 <select
                     id="quarter"
                     class="mt-1 w-full border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
@@ -46,7 +47,7 @@
             <div v-for="(attendance, index) in form.attendance" class="col-span-12">
                 <div class="flex w-full">
                     <div>
-                        <jet-label :for="`language${index}`" value="Language" />
+                        <jet-label :for="`language${index}`" :value="$t('language')" />
                         <select
                             :id="`language${index}`"
                             class="mt-1 border-gray-300 focus:border-indigo-300 focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
@@ -64,7 +65,7 @@
                         </select>
                     </div>
                     <div class="ml-4 flex-1">
-                        <jet-label :for="`language_name${index}`" value="Name" />
+                        <jet-label :for="`language_name${index}`" :value="$t('name')" />
                         <jet-input
                             :id="`language_name${index}`"
                             type="text"
@@ -73,7 +74,7 @@
                         />
                     </div>
                     <div class="ml-4">
-                        <jet-label :for="`attendance${index}`" value="Attendance" />
+                        <jet-label :for="`attendance${index}`" :value="$t('attendance')" />
                         <jet-input
                             :id="`attendance${index}`"
                             type="number"
@@ -94,12 +95,8 @@
         </template>
 
         <template #actions>
-            <jet-action-message :on="form.recentlySuccessful" class="mr-3">
-                Saved.
-            </jet-action-message>
-
             <jet-button :class="{ 'opacity-25': form.processing }" :disabled="form.processing">
-                Save
+                {{ $t('save') }}
             </jet-button>
         </template>
     </jet-form-section>
@@ -111,7 +108,6 @@ import JetFormSection from '@/Jetstream/FormSection.vue';
 import JetInputError from '@/Jetstream/InputError.vue';
 import JetInput from '@/Jetstream/Input.vue';
 import JetLabel from '@/Jetstream/Label.vue';
-import JetActionMessage from '@/Jetstream/ActionMessage.vue';
 import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue';
 
 export default {
@@ -120,7 +116,6 @@ export default {
     props: ['fiscalYears', 'languages', 'quarters'],
 
     components: {
-        JetActionMessage,
         JetButton,
         JetFormSection,
         JetInputError,
