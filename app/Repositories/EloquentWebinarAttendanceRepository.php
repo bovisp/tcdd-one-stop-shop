@@ -9,7 +9,6 @@ class EloquentWebinarAttendanceRepository implements WebinarAttendanceRepository
 {
     public function getWebinarAttendanceByFiscalYear(WebinarAttendanceFilter $filters) : array
     {
-//        dd($filters->getFiscalYears());
         return WebinarAttendance::query()
             ->join('webinars AS w', 'w.id', 'webinars_attendance.webinar_id')
             ->join('fiscal_years AS fy', 'fy.id', 'w.fiscal_year_id')

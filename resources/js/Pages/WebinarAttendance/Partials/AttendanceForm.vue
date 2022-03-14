@@ -108,7 +108,6 @@ import JetFormSection from '@/Jetstream/FormSection.vue';
 import JetInputError from '@/Jetstream/InputError.vue';
 import JetInput from '@/Jetstream/Input.vue';
 import JetLabel from '@/Jetstream/Label.vue';
-import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue';
 
 export default {
     name: 'AttendanceForm',
@@ -121,7 +120,6 @@ export default {
         JetInputError,
         JetInput,
         JetLabel,
-        JetSecondaryButton,
     },
 
     data() {

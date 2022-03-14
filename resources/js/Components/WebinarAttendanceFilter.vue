@@ -1,5 +1,4 @@
 <template>
-
     <div class="flex w-full items-end">
         <div class="flex-1">
             <jet-label for="fiscal-year--filter" :value="$t('fiscal_year')" />
@@ -43,12 +42,10 @@
 </template>
 
 <script>
-import JetButton from '@/Jetstream/Button.vue';
-import JetDropdown from '@/Jetstream/Dropdown.vue';
 import Dropdown from './Dropdown';
-import JetDropdownLink from '@/Jetstream/DropdownLink.vue';
-import JetInput from '@/Jetstream/Input.vue';
 import JetLabel from '@/Jetstream/Label.vue';
+import vSelect from 'vue-select';
+import 'vue-select/dist/vue-select.css';
 
 export default {
     name: 'WebinarAttendanceFilter',
@@ -56,12 +53,9 @@ export default {
     props: ['filters', 'fiscalYears', 'languages', 'quarters'],
 
     components: {
-        JetButton,
-        JetDropdown,
-        JetDropdownLink,
-        JetInput,
         JetLabel,
-        Dropdown
+        Dropdown,
+        vSelect
     },
 
     data() {

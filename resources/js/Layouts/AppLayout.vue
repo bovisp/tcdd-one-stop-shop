@@ -26,6 +26,12 @@
                                 >
                                     {{ $t('webinar_attendance') }}
                                 </jet-nav-link>
+                                <jet-nav-link
+                                    :href="route('moodle-courses.index')"
+                                    :active="route().current('moodle-courses.index')"
+                                >
+                                    {{ $t('moodle_courses') }}
+                                </jet-nav-link>
                             </div>
                         </div>
 
@@ -137,10 +143,6 @@
                         <div class="mt-3 space-y-1">
                             <jet-responsive-nav-link :href="route('profile.show')" :active="route().current('profile.show')">
                                 {{ $t('profile') }}
-                            </jet-responsive-nav-link>
-
-                            <jet-responsive-nav-link :href="route('api-tokens.index')" :active="route().current('api-tokens.index')" v-if="$page.props.jetstream.hasApiFeatures">
-                                API Tokens
                             </jet-responsive-nav-link>
 
                             <!-- Authentication -->
