@@ -25,8 +25,8 @@ class CourseMetadataResource extends JsonResource
             'description_en' => $this->description_en,
             'description_fr' => $this->description_fr,
             'category' => [
-                'en' => $this->category->category_name['english'],
-                'fr' => $this->category->category_name['french'],
+                'en' => optional($this->category)->category_name['english'] ?? '',
+                'fr' => optional($this->category)->category_name['french'] ?? '',
             ],
             'presenters' => $this->presenters,
             'keywords_en' => $this->keywords_en,
