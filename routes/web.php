@@ -4,6 +4,7 @@ use App\Http\Controllers\GetReportingStructureController;
 use App\Http\Controllers\GetWebinarDashboardController;
 use App\Http\Controllers\MoodleCourseMetadataController;
 use App\Http\Controllers\WebinarAttendanceController;
+use App\Http\Controllers\MoodleMediaController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 
@@ -38,4 +39,6 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
         ->name('webinar-attendance.dashboard');
 
     Route::resource('moodle-courses', MoodleCourseMetadataController::class);
+
+    Route::resource('moodle-media', MoodleMediaController::class);
 });
