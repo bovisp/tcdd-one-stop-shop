@@ -19,6 +19,7 @@ class CourseMetadataResource extends JsonResource
     {
         return [
             'id' => $this->id,
+            'course_id' => $this->course_id,
             'course_name_en' => $this->course_name_en,
             'course_name_fr' => $this->course_name_fr,
             'publish_date' => $this->publish_date,
@@ -28,6 +29,13 @@ class CourseMetadataResource extends JsonResource
                 'en' => $this->category->category_name['english'],
                 'fr' => $this->category->category_name['french'],
             ],
+            'language_ids' => $this->languages->map(function ($language) {
+                return $language->language_id;
+            }),
+            'languages' => $this->languages->map(function ($language) {
+                return $language->language->name;
+            }),
+            'category_id' => $this->category->id,
             'presenters' => $this->presenters,
             'keywords_en' => $this->keywords_en,
             'keywords_fr' => $this->keywords_fr,

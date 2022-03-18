@@ -172,14 +172,23 @@
                 </div>
 
                 <div >
-                    <jet-label v-if="objectivesOrTopics === 'objectives'" :value="$t('objectives')" />
-                    <jet-label v-else :value="$t('topics')" />
+                    <jet-label v-if="objectivesOrTopics === 'objectives'" :value="$t('objectives_en')" />
+                    <jet-label v-else :value="$t('topics_en')" />
                     <jet-input
-                        v-for="index in Object.keys(form.objectives_topics)"
-                        :id="`objective_${index}`"
+                        v-for="index in Object.keys(form.objectives_topics.english)"
+                        :id="`objective_en_${index}`"
                         type="text"
                         class="mt-1 block w-full"
-                        v-model="form.objectives_topics[index]" />
+                        v-model="form.objectives_topics.english[index]" />
+
+                    <jet-label v-if="objectivesOrTopics === 'objectives'" class="mt-2" :value="$t('objectives_fr')" />
+                    <jet-label v-else class="mt-2" :value="$t('topics_fr')" />
+                    <jet-input
+                        v-for="index in Object.keys(form.objectives_topics.french)"
+                        :id="`objective_fr_${index}`"
+                        type="text"
+                        class="mt-1 block w-full"
+                        v-model="form.objectives_topics.french[index]" />
                 </div>
 
                 <button
@@ -213,7 +222,12 @@ import "vue-select/dist/vue-select.css";
 export default {
     name: 'CourseMetadataForm',
 
-    props: ['categories', 'languages', 'mdl_courses'],
+    props: {
+        categories: Array,
+        languages: Array,
+        mdl_courses: Array,
+        metadata: Object
+    },
 
     components: {
         JetButton,
@@ -248,9 +262,16 @@ export default {
                     hours: 0,
                     minutes: 0,
                 },
-                objectives_topics: [''],
+                objectives_topics: {
+                    english: [''],
+                    french: ['']
+                },
             },
         }
+    },
+
+    created() {
+        if (Object.keys(this.metadata).length) this.fillForm();
     },
 
     methods: {
@@ -259,7 +280,25 @@ export default {
         },
 
         addNewObjectiveOrTopic() {
-            this.form.objectives_topics.push('');
+            this.form.objectives_topics.english.push('');
+            this.form.objectives_topics.french.push('');
+        },
+
+        fillForm() {
+            this.form.course_id = this.metadata.course_id;
+            this.form.course_name_en = this.metadata.course_name_en;
+            this.form.course_name_fr = this.metadata.course_name_fr;
+            this.form.category_id = this.metadata.category_id;
+            this.form.language_ids = this.metadata.language_ids;
+            this.form.publish_date = this.metadata.publish_date;
+            this.form.presenters = this.metadata.presenters;
+            this.form.keywords_en = this.metadata.keywords_en;
+            this.form.keywords_fr = this.metadata.keywords_fr;
+            this.form.min_estimated_time = this.metadata.min_estimated_time;
+            this.form.max_estimated_time = this.metadata.max_estimated_time;
+            this.form.objectives_topics = this.metadata.objectives_topics;
+            this.form.description_en = this.metadata.description_en;
+            this.form.description_fr = this.metadata.description_fr;
         }
     }
 }

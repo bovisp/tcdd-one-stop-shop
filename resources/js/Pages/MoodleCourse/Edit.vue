@@ -11,7 +11,7 @@
                     :categories="categories.data"
                     :languages="languages.data"
                     :mdl_courses="mdl_courses.data"
-                    :metadata="{}"
+                    :metadata="metadata?.data || {}"
                 />
             </div>
         </div>
@@ -23,9 +23,9 @@ import AppLayout from '@/Layouts/AppLayout.vue';
 import CourseMetadataForm from './Partials/CourseMetadataForm';
 
 export default {
-    name: 'Create',
+    name: 'Edit',
 
-    props: ['categories', 'languages', 'mdl_courses'],
+    props: ['categories', 'languages', 'mdl_courses', 'metadata'],
 
     components: {  AppLayout, CourseMetadataForm },
 }

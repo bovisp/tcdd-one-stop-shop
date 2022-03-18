@@ -1,9 +1,9 @@
 <template>
     <div class="fixed z-10 inset-0 overflow-y-auto" aria-labelledby="modal-title" role="dialog" aria-modal="true">
-        <div class="flex items-end justify-center min-h-screen pt-4 px-4 pb-20 text-center sm:block sm:p-0">
+        <div class="flex items-end justify-center min-h-screen pt-4 px-2 pb-20 text-center sm:block sm:p-0">
             <div class="fixed inset-0 bg-gray-500 bg-opacity-20 transition-opacity" aria-hidden="true"></div>
             <span class="hidden sm:inline-block sm:align-middle sm:h-screen" aria-hidden="true">&#8203;</span>
-            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-lg sm:w-full">
+            <div class="inline-block align-bottom bg-white rounded-lg text-left overflow-hidden shadow-xl transform transition-all sm:my-8 sm:align-middle sm:max-w-2xl sm:w-full">
                 <div class="bg-white p-3">
                     <div class="sm:flex sm:items-start">
                         <div class="mt-2 text-center sm:mt-0 sm:text-left w-full">
@@ -20,8 +20,7 @@
                                                 {{ $t('name') }}
                                             </dt>
                                             <dd class="mt-4 text-sm text-gray-900 sm:mt-0 sm:col-span-2 sm:text-right italic">
-                                                <span v-if="$i18n.locale === 'en'">{{ item.course_name_en }}</span>
-                                                <span v-else>{{ item.course_name_fr }}</span>
+                                                <span>{{ item.course_name_en }} / {{ item.course_name_fr }}</span>
                                             </dd>
                                         </div>
                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -29,8 +28,7 @@
                                                 Description
                                             </dt>
                                             <dd class="mt-4 text-sm text-gray-900 sm:mt-0 sm:col-span-2 sm:text-right italic">
-                                                <span v-if="$i18n.locale === 'en'">{{ item.description_en }}</span>
-                                                <span v-else>{{ item.description_fr }}</span>
+                                                <span>{{ item.description_en }} / {{ item.description_fr }}</span>
                                             </dd>
                                         </div>
                                         <div class="bg-gray-50 px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -38,7 +36,19 @@
                                                 {{ $t('category') }}
                                             </dt>
                                             <dd class="mt-4 text-sm text-gray-900 sm:mt-0 sm:col-span-2 sm:text-right italic">
-                                                {{ item.category[$i18n.locale] }}
+                                                {{ item.category.en }} / {{ item.category.fr }}
+                                            </dd>
+                                        </div>
+                                        <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
+                                            <dt class="text-sm font-medium text-gray-500">
+                                                {{ $t('languages') }}
+                                            </dt>
+                                            <dd class="mt-4 text-sm text-gray-900 sm:mt-0 sm:col-span-2 sm:text-right italic">
+                                                <ul>
+                                                    <li v-for="language in item.languages">
+                                                        {{ language }}
+                                                    </li>
+                                                </ul>
                                             </dd>
                                         </div>
                                         <div class="bg-white px-4 py-5 sm:grid sm:grid-cols-3 sm:gap-4 sm:px-6">
@@ -58,12 +68,12 @@
                                                 {{ $t('keywords') }}
                                             </dt>
                                             <dd class="mt-4 text-sm text-gray-900 sm:mt-0 sm:col-span-2 sm:text-right italic">
-                                                <ul v-if="$i18n.locale === 'en'">
+                                                <ul>
                                                     <li v-for="keyword in item.keywords_en">
                                                         {{ keyword }}
                                                     </li>
                                                 </ul>
-                                                <ul v-if="$i18n.locale === 'fr'">
+                                                <ul>
                                                     <li v-for="keyword in item.keywords_fr">
                                                         {{ keyword }}
                                                     </li>
@@ -96,7 +106,12 @@
                                             </dt>
                                             <dd class="mt-4 text-sm text-gray-900 sm:mt-0 sm:col-span-2 sm:text-right italic">
                                                 <ul>
-                                                    <li v-for="objective in item.objectives_topics">
+                                                    <li v-for="objective in item.objectives_topics.english">
+                                                        {{ objective }}
+                                                    </li>
+                                                </ul>
+                                                <ul>
+                                                    <li v-for="objective in item.objectives_topics.french">
                                                         {{ objective }}
                                                     </li>
                                                 </ul>

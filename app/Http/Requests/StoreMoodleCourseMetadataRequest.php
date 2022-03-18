@@ -30,6 +30,10 @@ class StoreMoodleCourseMetadataRequest extends FormRequest
             'keywords_fr.*' => 'string',
             'min_estimated_time' => 'required',
             'objectives_topics' => 'required|array',
+            'objectives_topics.english' => 'required|array',
+            'objectives_topics.english.*' => 'string',
+            'objectives_topics.french' => 'required|array',
+            'objectives_topics.french.*' => 'string',
         ];
     }
 

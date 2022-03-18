@@ -76,8 +76,12 @@ export default {
     hours: 'Heures',
     minutes: 'Minutes',
     objectives: 'Objectifs',
+    objectives_en: 'Objectifs (Anglais)',
+    objectives_fr: 'Objectifs (Français)',
     topics_covered: 'Sujets couverts',
     topics: 'Sujets',
+    topics_en: 'Sujets (Anglais)',
+    topics_fr: 'Sujets (Français)',
     details: 'Détails',
     delete: 'Supprimer',
     course_metadata: 'Métadonnées du Cours',
@@ -85,5 +89,6 @@ export default {
     objectives_topics: 'Objectifs/Sujets couverts',
     delete_metadata: 'Supprimer Métadonnées du Cours',
     are_you_sure: 'Êtes-vous sûr ?',
-    course_id: 'ID de cours'
+    course_id: 'ID de cours',
+    edit: 'Éditer',
 };

@@ -20,7 +20,7 @@ class MoodleCourseLanguage extends Model
 
     public function language() : HasOne
     {
-        return $this->hasOne(Language::class);
+        return $this->hasOne(Language::class, 'id', 'language_id');
     }
 
     public function courseMetadata() : BelongsTo

@@ -17,12 +17,20 @@
                         </a>
                     </div>
                     <div class="w-full mt-6">
-                        <list :items="courses.data" @details="setFeaturedItem" @delete="setItemToDelete"/>
+                        <list :items="courses.data"
+                              @details="setFeaturedItem"
+                              @delete="setItemToDelete"
+                              @edit="edit"
+                        />
                     </div>
-                    <!--TODO: implement pagination-->
-                    <!--<div class="w-full mt-6 flex justify-end">-->
-                    <!--<pagination />-->
-                    <!--</div>-->
+                    <div class="w-full mt-6 flex justify-end">
+                        <pagination
+                            v-if="pagination.lastPage > 1"
+                            :current="pagination.current"
+                            :last-page="pagination.lastPage"
+                            @change="pageChangeHandle"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -67,7 +75,9 @@ import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue';
 export default {
     name: 'Index',
 
-    props: ['meta', 'courses'],
+    props: {
+        courses: Array,
+    },
 
     components: {
         AppLayout,
@@ -82,7 +92,11 @@ export default {
     data() {
         return {
             featuredItem: null,
-            itemToDelete: null
+            itemToDelete: null,
+            pagination: {
+                current: this.courses.meta?.current_page,
+                lastPage: this.courses.meta?.last_page,
+            }
         };
     },
 
@@ -96,15 +110,32 @@ export default {
         },
 
         deleteItem() {
-            console.log('delete item: ' + this.itemToDelete);
-
             this.$inertia.delete(`/moodle-courses/${this.itemToDelete}`);
 
             this.itemToDelete = null;
         },
 
+        edit(id) {
+            this.$inertia.get(`moodle-courses/${id}/edit`);
+        },
+
         closeModal() {
             this.itemToDelete = null;
+        },
+
+        pageChangeHandle(value) {
+            switch (value) {
+                case 'next':
+                    this.pagination.current += 1;
+                    break;
+                case 'previous':
+                    this.pagination.current -= 1;
+                    break;
+                default:
+                    this.pagination.current = value;
+            }
+
+            this.$inertia.visit(`/moodle-courses?page=${this.pagination.current}`);
         }
     }
 }

@@ -74,8 +74,12 @@ export default {
     hours: 'Hours',
     minutes: 'Minutes',
     objectives: 'Objectives',
+    objectives_en: 'Objectives (English)',
+    objectives_fr: 'Objectives (French)',
     topics_covered: 'Topics Covered',
     topics: 'Topics',
+    topics_en: 'Topics (English)',
+    topics_fr: 'Topics (French)',
     details: 'Details',
     delete: 'Delete',
     course_metadata: 'Course metadata',
@@ -83,5 +87,6 @@ export default {
     objectives_topics: 'Objectives/Topics Covered',
     delete_metadata: 'Delete Course Metadata',
     are_you_sure: 'Are you sure?',
-    course_id: 'Course ID'
+    course_id: 'Course ID',
+    edit: 'Edit',
 };
