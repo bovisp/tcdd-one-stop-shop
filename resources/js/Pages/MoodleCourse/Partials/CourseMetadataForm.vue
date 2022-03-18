@@ -276,7 +276,12 @@ export default {
 
     methods: {
         submit() {
-            this.$inertia.post('/moodle-courses', this.form);
+            if (Object.keys(this.metadata).length) {
+                this.$inertia.patch(`/moodle-courses/${this.metadata.id}`, this.form);
+            } else {
+                this.$inertia.post('/moodle-courses/', this.form);
+            }
+
         },
 
         addNewObjectiveOrTopic() {

@@ -95,5 +95,5 @@ export default {
     media_description_fr:'Description de media',
     license_id:'License',
     media:'Media',
-    Edit: 'Modifier'
+    edit: 'Modifier'
 };

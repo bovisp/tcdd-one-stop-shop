@@ -60,7 +60,7 @@
                                 </div>
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap text-right text-sm underline">
-                                <a href="#" @click="$emit('details', item.id)">{{ $t('Edit') }}</a>
+                                <a href="#" @click="$emit('details', item.id)">{{ $t('edit') }}</a>
                                 <a href="#" class="text-red-500 underline ml-2" @click="$emit('delete', item.id)">
                                     {{ $t('delete') }}
                                 </a>
