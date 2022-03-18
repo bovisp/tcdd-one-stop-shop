@@ -7,14 +7,15 @@ use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
 
-class CourseCategory extends Resource
+
+class MoodleMediaLicense extends Resource
 {
     /**
      * The model the resource corresponds to.
      *
      * @var string
      */
-    public static $model = \App\Models\CourseCategory::class;
+    public static $model = \App\Models\MoodleMediaLicense::class;
 
     /**
      * The single value that should be used to represent the resource when being displayed.
@@ -29,7 +30,7 @@ class CourseCategory extends Resource
      * @var array
      */
     public static $search = [
-        'id','category_name'
+        'id','description','name'
     ];
 
     /**
@@ -42,12 +43,18 @@ class CourseCategory extends Resource
     {
         return [
             ID::make()->sortable(),
-            Text::make('Name (English)', 'category_name->english')
-            ->sortable()
-            ->rules('required'),
-            Text::make('Name (French)', 'category_name->french')
-            ->sortable()
-            ->rules('required')
+            Text::make('Name (English)', 'name->english')
+                ->sortable()
+                ->rules('required'),
+            Text::make('Name (French)', 'name->french')
+                ->sortable()
+                ->rules('required'),
+            Text::make('Description (English)', 'description->english')
+                  ->sortable()
+                  ->rules('required'),
+            Text::make('Description (French)', 'description->french')
+                ->sortable()
+                ->rules('required')
         ];
     }
 }

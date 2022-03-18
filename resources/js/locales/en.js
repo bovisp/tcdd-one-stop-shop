@@ -58,6 +58,7 @@ export default {
     user_info: '{name}\'s information',
     user_information: 'User information',
     moodle_courses: 'Moodle Courses',
+    moodle_media: 'Moodle Media',
     add_metadata: 'Add course metadata',
     course_name_en: 'Course name (English)',
     course_name_fr: 'Course name (French)',
@@ -88,5 +89,11 @@ export default {
     delete_metadata: 'Delete Course Metadata',
     are_you_sure: 'Are you sure?',
     course_id: 'Course ID',
-    edit: 'Edit',
+    title:'Title',
+    media_title_en:'Media Title',
+    media_description_en:'Media Description',
+    media_description_fr:'Description de media',
+    license_id: 'License',
+    media:'Media',
+    Edit: 'Edit'
 };

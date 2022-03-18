@@ -60,6 +60,7 @@ export default {
     user_info: 'Les infos de {name}',
     user_information: 'Informations de l\'utilisateur',
     moodle_courses: 'Cours Moodle',
+    moodle_media: 'Media Moodle',
     add_metadata: 'Ajouter des métadonnées de cours',
     course_name_en: 'Nom du Cours (Anglais)',
     course_name_fr: 'Nom du Cours (Français)',
@@ -90,5 +91,9 @@ export default {
     delete_metadata: 'Supprimer Métadonnées du Cours',
     are_you_sure: 'Êtes-vous sûr ?',
     course_id: 'ID de cours',
-    edit: 'Éditer',
+    title:'Titre',
+    media_description_fr:'Description de media',
+    license_id:'License',
+    media:'Media',
+    Edit: 'Modifier'
 };
