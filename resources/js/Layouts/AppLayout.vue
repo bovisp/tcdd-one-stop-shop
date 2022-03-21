@@ -27,6 +27,12 @@
                                     {{ $t('webinar_attendance') }}
                                 </jet-nav-link>
                                 <jet-nav-link
+                                    :href="route('moodle-views-completions.dashboard')"
+                                    :active="route().current('moodle-views-completions.dashboard')"
+                                >
+                                    {{ $t('moodle_views_completions') }}
+                                </jet-nav-link>
+                                <jet-nav-link
                                     :href="route('moodle-courses.index')"
                                     :active="route().current('moodle-courses.index')"
                                 >

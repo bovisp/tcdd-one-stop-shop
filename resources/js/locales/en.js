@@ -95,5 +95,8 @@ export default {
     media_description_fr:'Description de media',
     license_id: 'License',
     media:'Media',
-    edit: 'Edit'
+    edit: 'Edit',
+    moodle_views_completions: 'Moodle views and completions',
+    views: 'Views',
+    completions: 'Completions'
 };

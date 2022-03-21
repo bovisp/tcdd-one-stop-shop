@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\GetMoodleViewsAndCompletionsDashboardController;
 use App\Http\Controllers\GetReportingStructureController;
 use App\Http\Controllers\GetWebinarDashboardController;
 use App\Http\Controllers\MoodleCourseMetadataController;
@@ -37,6 +38,11 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::get('webinar-attendance/dashboard', GetWebinarDashboardController::class)
         ->name('webinar-attendance.dashboard');
+
+    Route::get(
+        'moodle-views-completions/dashboard',
+        GetMoodleViewsAndCompletionsDashboardController::class
+    )->name('moodle-views-completions.dashboard');
 
     Route::resource('moodle-courses', MoodleCourseMetadataController::class);
 
