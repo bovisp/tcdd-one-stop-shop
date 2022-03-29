@@ -38,6 +38,12 @@
                                 >
                                     {{ $t('moodle_courses') }}
                                 </jet-nav-link>
+                                <jet-nav-link
+                                    :href="route('course-catalogues.index')"
+                                    :active="route().current('course-catalogues.index')"
+                                >
+                                        {{ $t('moodle_catalogue') }}
+                                </jet-nav-link>
                                 <!--<jet-nav-link-->
                                         <!--:href="route('moodle-media.index')"-->
                                         <!--:active="route().current('moodle-media.index')"-->
