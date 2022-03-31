@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use Laravel\Nova\Fields\ID;
 use Laravel\Nova\Http\Requests\NovaRequest;
 use Laravel\Nova\Fields\Text;
+use Laravel\Nova\Fields\Textarea;
+
 
 
 class MoodleMediaLicense extends Resource
@@ -49,10 +51,10 @@ class MoodleMediaLicense extends Resource
             Text::make('Name (French)', 'name->french')
                 ->sortable()
                 ->rules('required'),
-            Text::make('Description (English)', 'description->english')
+            Textarea::make('Description (English)', 'description->english')
                   ->sortable()
                   ->rules('required'),
-            Text::make('Description (French)', 'description->french')
+            Textarea::make('Description (French)', 'description->french')
                 ->sortable()
                 ->rules('required')
         ];

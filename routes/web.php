@@ -52,7 +52,4 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('course-catalogues', MoodleCourseCatalogueController::class);
 
-    Route::get('course-catalogues/dashboard', GetCatalogueDashboardController::class)
-        ->name('course-catalogues.dashboard');
-
 });

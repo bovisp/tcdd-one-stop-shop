@@ -19,12 +19,12 @@ class MoodleCourseCatalogueResource extends JsonResource
             'title' => $this->title,
             'language' => $this->language,
             'publish_date' => $this->publish_date,
-            'completion_time' =>$this->completion_time,
-            'category_id' => $this->category->id ?? '',
-            'category' => [
-                'en' => optional($this->category)->category_name['english'] ?? '',
-                'fr' => optional($this->category)->category_name['french'] ?? '',
-            ],
+            'categories' =>  $this->courseCategories->map(function ($category) {
+                return [
+                    'en' => $category->category_name['english'] ?? '',
+                    'fr' => $category->category_name['french'] ?? '',
+                ];
+            })
         ];
     }
 }

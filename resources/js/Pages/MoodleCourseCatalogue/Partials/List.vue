@@ -20,17 +20,17 @@
                     </tr>
                 </thead>
                 <tbody class="bg-white divide-y divide-gray-200">
-                    <tr class="w-full" v-if="!items.length">
+                    <tr class="w-full" v-if="!items.data.length">
                         <td class="flex w-full items-center justify-center h-10 text-sm font-medium text-gray-900">
                             --
                         </td>
                     </tr>
                     <template v-else>
-                        <tr v-for="item in items">
+                        <tr v-for="item in items.data">
                             <td class="px-6 py-4 whitespace-nowrap truncate">
                                 <div class="flex items-center">
                                     <div class="text-sm font-medium text-gray-900 ">
-                                        <!--{{ item.title }}-->
+                                        {{ item.title }}
                                     </div>
                                 </div>
                             </td>
@@ -44,8 +44,8 @@
                             </td>
                             <td class="px-6 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
-                                    <div class="text-sm font-medium text-gray-900">
-                                        {{ item.category.en }} / {{ item.category.fr }}
+                                    <div v-for="cat in item.categories" class="text-sm font-medium text-gray-900">
+                                        {{ cat.en }} - {{ cat.fr }}  ,
                                     </div>
                                 </div>
                             </td>
@@ -59,11 +59,20 @@
                 </tbody>
             </table>
         </div>
+        <!--<div class="p-5 flex justify-end">-->
+            <!--<Link class="px-2" :href="items.links.prev">Previous</link>-->
+            <!--<Link class="px-2" :href="items.links.next">Next</link>-->
+        <!--</div>-->
     </div>
 </template>
 
 <script>
-export default {
+    import { Link } from '@inertiajs/inertia-vue3'
+
+    export default {
+        components:{
+          Link,
+        },
     name: 'List',
 
         props: ['items'],
@@ -78,5 +87,8 @@ export default {
     overflow: hidden;
     text-overflow: ellipsis;
     /*white-space: nowrap;*/
+}
+ td {
+    word-break: break-all;
 }
 </style>

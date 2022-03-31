@@ -40,39 +40,75 @@ class FirstSheetImport implements ToCollection, WithStartRow
         foreach ($rows as $row)
         {
 
-
             if ($row[0] === 'English' || $row[0] === "French") {
 
                 $Cat = MoodleCourseCatalogue::where('title', '=', $row[2])->first();
-                if ($Cat)
+                $Course_category =  DB::table('course_categories')->whereJsonContains('category_name', ['english' =>
+                    $row[3]])
+                    ->first();
+                $publishDate = $this->transformDate($row[1]);
+
+                if ($Cat && !$Course_category)
                 {
+//                    dd('$Cat && !$Course_category');
+                    $courseCategory =CourseCategory::firstOrCreate(['category_name' => ['english' => $row[3],'french' =>
+                        '']]);
+                    $mdlCourseCat = $Cat;
+                    $mdlCourseCat->courseCategories()->attach($courseCategory->id);
+
                     continue;
-                }else
-                {
-                    $publishDate = $this->transformDate($row[1]);
+                }elseif(!$Cat && $Course_category){
+//                    dd('!$Cat && $Course_category');
 
-                    $this->category = DB::table('course_categories')->whereJsonContains('category_name', ['english' =>
-                        $row[3]])
-                        ->first();
-
-
-                    if ($this->category) {
-                        $category_id = $this->category->id;
-                    }else {
-                        $category = CourseCategory::firstOrCreate(['category_name' => ['english' => $row[3],'french' => '']])
-                            ->first();
-                        $category_id = $category->id;
-                    }
-
-                    MoodleCourseCatalogue::firstOrCreate([
+                    $newMdlCourseCat = MoodleCourseCatalogue::firstOrCreate([
 
                         'language' => $row[0],
                         'publish_date' => $publishDate,
                         'title' => $row[2],
                         'completion_time' => $row[4],
-                        'category_id' => $category_id,
+//                        'category_id' => $category_id,
                     ]);
+                    $newMdlCourseCat->courseCategories()->attach($Course_category->id);
+                    continue;
+                }elseif(!$Cat && !$Course_category){
+                    //dd('!$Cat && !$Course_category');
+
+                    $newNewMdlCourse = MoodleCourseCatalogue::firstOrCreate([
+
+                        'language' => $row[0],
+                        'publish_date' => $publishDate,
+                        'title' => $row[2],
+                        'completion_time' => $row[4],
+//                        'category_id' => $category_id,
+                    ]);
+                    $newNewCourseCat = $courseCategory =CourseCategory::firstOrCreate(['category_name' => ['english' => $row[3],'french' =>
+                        '']]);
+                    $newNewMdlCourse->courseCategories()->attach($newNewCourseCat->id);
                 }
+
+//                    $publishDate = $this->transformDate($row[1]);
+
+//                    $this->category = DB::table('course_categories')->whereJsonContains('category_name', ['english' =>
+//                        $row[3]])
+//                        ->first();
+//
+//
+//                    if ($this->category) {
+//                        $category_id = $this->category->id;
+//                    }else {
+//                        $category = CourseCategory::firstOrCreate(['category_name' => ['english' => $row[3],'french' => '']])
+//                            ->first();
+//                        $category_id = $category->id;
+//                    }
+
+//                    MoodleCourseCatalogue::firstOrCreate([
+//
+//                        'language' => $row[0],
+//                        'publish_date' => $publishDate,
+//                        'title' => $row[2],
+//                        'completion_time' => $row[4],
+//                        'category_id' => $category_id,
+//                    ]);
 
             }
         }

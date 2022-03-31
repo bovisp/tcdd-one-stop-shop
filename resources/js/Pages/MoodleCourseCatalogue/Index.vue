@@ -18,14 +18,23 @@
                     </div>
                     <catalogue-filter
                             class="mt-6"
+                            :items="catalogues.data"
+                            :categories="categories.data"
                             :category_id="category_id"
                             :language="language"
                             :keyword="keyword"
-                            @apply="applyFilters"
                     />
                     <div class="w-full mt-6">
-                        <list :items="catalogues.data"
+                        <list :items="catalogues"
 
+                        />
+                    </div>
+                    <div class="w-full mt-6 flex justify-end">
+                        <pagination
+                                v-if="pagination.lastPage > 1"
+                                :current="pagination.current"
+                                :last-page="pagination.lastPage"
+                                @change="pageChangeHandle"
                         />
                     </div>
                 </div>
@@ -38,34 +47,47 @@
 import AppLayout from '@/Layouts/AppLayout.vue';
 import List from './Partials/List';
 import CatalogueFilter from './Partials/CatalogueFilter';
+import Pagination from './Partials/Pagination';
 
 
 export default {
     name: 'Index',
 
     props: [
-        'catalogues', 'catalogue_filters'
+        'catalogues','categories'
     ],
 
     components: {
         AppLayout,
         List,
-        CatalogueFilter
+        CatalogueFilter,
+        Pagination
     },
 
     data() {
         return {
-
+            pagination: {
+                current: this.catalogues.meta?.current_page,
+                lastPage: this.catalogues.meta?.last_page,
+            }
         };
     },
 
     methods: {
-        applyFilters() {
-            const query = new URLSearchParams();
+        pageChangeHandle(value) {
+            switch (value) {
+                case 'next':
+                    this.pagination.current += 1;
+                    break;
+                case 'previous':
+                    this.pagination.current -= 1;
+                    break;
+                default:
+                    this.pagination.current = value;
+            }
 
-            this.$inertia.visit(`/course-catalogues/dashboard?${query}`);
+            this.$inertia.visit(`/course-catalogues?page=${this.pagination.current}`);
         }
-
     }
 }
 </script>

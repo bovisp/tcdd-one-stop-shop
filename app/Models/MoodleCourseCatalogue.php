@@ -4,7 +4,9 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
-use Illuminate\Database\Eloquent\Relations\HasOne;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
+use App\Models\CourseCategory;
+
 
 class MoodleCourseCatalogue extends Model
 {
@@ -22,10 +24,11 @@ class MoodleCourseCatalogue extends Model
 
     ];
 
+    public function courseCategories() :BelongsToMany
 
-    public function category() : HasOne
     {
-        return $this->hasOne(CourseCategory::class,  'id', 'category_id');
+        return $this->belongsToMany(CourseCategory::class, 'coursecategories_moodlecoursecatalogues');
+
     }
 
 }

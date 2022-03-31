@@ -20,9 +20,7 @@ class CreateMoodleCourseCataloguesTable extends Migration
             $table->string('title');
             $table->longText('objective')->nullable();
             $table->string('completion_time')->nullable();
-            $table->foreignId('category_id')->nullable()->references('id')->on('course_categories');
             $table->timestamps();
-
 
         });
     }
