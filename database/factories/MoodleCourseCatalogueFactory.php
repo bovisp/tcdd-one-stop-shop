@@ -23,8 +23,6 @@ class MoodleCourseCatalogueFactory extends Factory
             'title' => $this->faker->text(5),
             'completion_time' => $this->faker->numberBetween(1,4),
             'objective' => 'test',
-            'category_id' => CourseCategory::factory()->create()->id,
-
         ];
     }
 }
