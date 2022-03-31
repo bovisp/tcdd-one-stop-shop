@@ -17,7 +17,10 @@
                         </a>
                     </div>
                     <div class="w-full mt-6">
-                        <list :items="media.data" @details="setFeaturedItem" @delete="setItemToDelete"/>
+                        <list :items="media.data"
+                              @delete="setItemToDelete"
+                              @edit="edit"
+                        />
                     </div>
                     <!--TODO: implement pagination-->
                     <!--<div class="w-full mt-6 flex justify-end">-->
@@ -26,11 +29,7 @@
                 </div>
             </div>
         </div>
-        <details-modal
-            v-if="featuredItem"
-            :item="media.data.find(media => media.id === featuredItem)"
-            @close="featuredItem = null"
-        />
+
 
         <jet-dialog-modal :show="itemToDelete" @close="closeModal">
             <template #title>
@@ -102,7 +101,9 @@ export default {
 
             this.itemToDelete = null;
         },
-
+        edit(id) {
+            this.$inertia.get(`moodle-media/${id}/edit`);
+        },
         closeModal() {
             this.itemToDelete = null;
         }

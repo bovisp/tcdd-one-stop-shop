@@ -18,10 +18,10 @@ class MoodleMediaFactory extends Factory
     public function definition()
     {
         return [
-            'title' => $this->faker->words($nb = 3, $asText = false),
-            'description' => $this->faker->words($nb = 3, $asText = false),
+            'title' => ["english"=> "en-title","french" =>"fr-titre"],
+            'description' => ["english"=> "en-description","french" =>"fr-description"],
             'media' => $this->faker->image(),
-            'keywords' => $this->faker->words($nb = 3, $asText = false),
+            'keywords' => ["english"=> "en-keyword","french" =>"fr-mots-cles"],
             'license_id' => MoodleMediaLicense::factory()->create()->id,
         ];
     }

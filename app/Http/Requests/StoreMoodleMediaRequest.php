@@ -30,8 +30,8 @@ class StoreMoodleMediaRequest extends FormRequest
             'description_fr' => 'required',
             'media' => 'required',
             'license_id' => 'required',
-//            'keywords_en' => 'string',
-//            'keywords_fr' => 'string',
+            'keywords_en' => 'required',
+            'keywords_fr' => 'required',
         ];
     }
 
