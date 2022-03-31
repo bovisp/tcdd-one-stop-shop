@@ -19,7 +19,7 @@ class CourseCategoryResource extends JsonResource
     {
         return [
             'id' => $this->id,
-            'label' => $this->category_name['english'] . ' / ' . $this->category_name['french'],
+            'label' => $this->category_name['english'] . ' / ' . $this->category_name['french'] ?? '',
         ];
     }
 }

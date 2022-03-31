@@ -98,5 +98,9 @@ export default {
     edit: 'Modifier',
     moodle_views_completions: 'Vues et achèvements de Moodle',
     views: 'Vues',
-    completions: 'Achèvements'
+    completions: 'Achèvements',
+    moodle_catalogue: 'Moodle Catalogue',
+    add_catalogue: 'Ajouter Catalogue',
+    add_moodle_catalogue:'Ajouter Moodle Catalogue',
+    keyword: 'Mots-clés'
 };

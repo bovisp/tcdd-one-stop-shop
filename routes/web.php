@@ -8,6 +8,8 @@ use App\Http\Controllers\WebinarAttendanceController;
 use App\Http\Controllers\MoodleMediaController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\MoodleCourseCatalogueController;
+use App\Http\Controllers\GetCatalogueDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -47,4 +49,7 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
     Route::resource('moodle-courses', MoodleCourseMetadataController::class);
 
     Route::resource('moodle-media', MoodleMediaController::class);
+
+    Route::resource('course-catalogues', MoodleCourseCatalogueController::class);
+
 });
