@@ -125,7 +125,6 @@ export default {
             }
         },
         fillForm() {
-            this.form.media = this.metadata.media;
             this.form.title_en = this.metadata.title_en;
             this.form.title_fr = this.metadata.title_fr;
             this.form.license_id = this.metadata.license_id;

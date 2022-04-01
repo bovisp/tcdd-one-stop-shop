@@ -29,15 +29,20 @@ class MoodleMediaController extends Controller
     }
 
     /**
+     * @param Request $request
      * @return \Inertia\Response
      */
 
-    public function index()
+    public function index(Request $request)
     {
+        $query = MoodleMedia::with('moodleMediaLicense');
+
+        $data = $request->get('page') !== '0'
+            ? $query->paginate(10)
+            : $query->limit(10)->get();
 
         return Inertia::render('MoodleMedia/Index', [
-            'media' => MoodleMediaCollection::make(MoodleMedia::with('moodleMediaLicense')
-                ->get()),
+            'media' => MoodleMediaCollection::make($data),
         ]);
     }
 

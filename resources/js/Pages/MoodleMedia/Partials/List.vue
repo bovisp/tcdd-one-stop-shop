@@ -16,7 +16,7 @@
                             {{ item.description.english }}  / {{ item.description.french }}
                         </p>
                         <p class="text-gray-700 text-base">
-                            License: {{ item.moodleMediaLicense.en }} / License: {{ item.moodleMediaLicense.fr }}
+                            License: {{ item.moodleMediaLicense.en }} / {{ item.moodleMediaLicense.fr }}
                         </p>
                         <p class="text-gray-700 text-base">
                             {{ item.keywords.english }} / {{ item.keywords.french }}

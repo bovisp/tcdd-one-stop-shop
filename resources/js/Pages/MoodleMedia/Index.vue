@@ -22,10 +22,14 @@
                               @edit="edit"
                         />
                     </div>
-                    <!--TODO: implement pagination-->
-                    <!--<div class="w-full mt-6 flex justify-end">-->
-                    <!--<pagination />-->
-                    <!--</div>-->
+                    <div class="w-full mt-6 flex justify-end">
+                        <pagination
+                                v-if="pagination.lastPage > 1"
+                                :current="pagination.current"
+                                :last-page="pagination.lastPage"
+                                @change="pageChangeHandle"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
@@ -63,6 +67,7 @@ import JetButton from '@/Jetstream/Button.vue';
 import JetDialogModal from '@/Jetstream/DialogModal.vue';
 import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue';
 
+
 export default {
     name: 'Index',
 
@@ -81,7 +86,11 @@ export default {
     data() {
         return {
             featuredItem: null,
-            itemToDelete: null
+            itemToDelete: null,
+            pagination: {
+                current: this.media.meta?.current_page,
+                lastPage: this.media.meta?.last_page,
+            }
         };
     },
 
@@ -106,6 +115,20 @@ export default {
         },
         closeModal() {
             this.itemToDelete = null;
+        },
+        pageChangeHandle(value) {
+            switch (value) {
+                case 'next':
+                    this.pagination.current += 1;
+                    break;
+                case 'previous':
+                    this.pagination.current -= 1;
+                    break;
+                default:
+                    this.pagination.current = value;
+            }
+
+            this.$inertia.visit(`/moodle-media?page=${this.pagination.current}`);
         }
     }
 }
