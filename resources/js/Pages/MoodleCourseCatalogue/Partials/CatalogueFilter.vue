@@ -1,15 +1,14 @@
 <template>
     <div class="flex w-full items-end">
-        <form @submit.prevent="submit">
+        <form class="flex w-full items-end" @submit.prevent="submit">
 
         <div class="ml-4 flex-1 ">
             <jet-label for="keyword--filter" :value="$t('keyword')" />
-            <v-select
-
+            <input
+                    id="keywordr"
+                    type="text"
                     v-model="form.keyword"
-                    :options="items"
-                    :reduce="item => item.title"
-            />
+             />
         </div>
         <div class="ml-4 flex-1 items-end">
             <jet-label for="category" :value="$t('category')" />
@@ -24,7 +23,7 @@
         <div class="ml-4 flex-1">
             <jet-label for="language" :value="$t('language')" />
             <select
-                    id="language--filter"
+                    id="language"
                     class="mt-1 w-full border-gray-300 focus:border-indigo-300
                         focus:ring focus:ring-indigo-200 focus:ring-opacity-50 rounded-md shadow-sm"
                     v-model="form.language"
