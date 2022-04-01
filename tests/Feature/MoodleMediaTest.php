@@ -35,14 +35,14 @@ class MoodleMediaTest extends TestCase
         $this->withoutExceptionHandling();
         $this->authenticatedUser();
         $data = [
-            'description_en' => 'jfodsajfosdja',
-            'description_fr' => 'jfodsajfosdja',
+            'description_en' => 'description-en',
+            'description_fr' => 'description-fr',
             'media' => UploadedFile::fake()->image('avatar.jpg'),
-            'title_en' => 'fdfdfdf',
-            'title_fr' => 'fdfdfdf',
+            'title_en' => 'title-en',
+            'title_fr' => 'title-fr',
             'license_id' => MoodleMediaLicense::factory()->create()->id,
-            'keywords_en' => 'ggfgd',
-            'keywords_fr' => 'ggfgd',
+            'keywords_en' => 'keyword-en',
+            'keywords_fr' => 'mots-cles-fr',
         ];
         $response = $this->post('/moodle-media' ,
            $data

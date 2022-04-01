@@ -83,8 +83,11 @@ import "vue-select/dist/vue-select.css";
 export default {
     name: 'CourseMetadataForm',
 
-    props: ['licenses'],
+    props: {
+        licenses :Array,
+        metadata: Object
 
+    },
     components: {
         JetButton,
         JetFormSection,
@@ -102,17 +105,33 @@ export default {
                 title_en: '',
                 title_fr: '',
                 license_id: null,
-                keywords_en: [],
-                keywords_fr: [],
-                description_en: '',
-                description_fr: '',
+                keywords_en: '',
+                keywords_fr: '',
+                description_en: [],
+                description_fr: [],
             },
         }
     },
+    // created() {
+    //     if (Object.keys(this.metadata).length) this.fillForm();
+    // },
 
     methods: {
         submit() {
-            this.$inertia.post('/moodle-media', this.form);
+            if (Object.keys(this.metadata).length) {
+                this.$inertia.patch(`/moodle-media/${this.metadata.id}`, this.form);
+            } else {
+                this.$inertia.post('/moodle-media', this.form);
+            }
+        },
+        fillForm() {
+            this.form.title_en = this.metadata.title_en;
+            this.form.title_fr = this.metadata.title_fr;
+            this.form.license_id = this.metadata.license_id;
+            this.form.keywords_en = this.metadata.keywords_en;
+            this.form.keywords_fr = this.metadata.keywords_fr;
+            this.form.description_en = this.metadata.description_en;
+            this.form.description_fr = this.metadata.description_fr;
         }
     }
 }

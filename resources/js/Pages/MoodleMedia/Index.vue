@@ -17,20 +17,23 @@
                         </a>
                     </div>
                     <div class="w-full mt-6">
-                        <list :items="media.data" @details="setFeaturedItem" @delete="setItemToDelete"/>
+                        <list :items="media.data"
+                              @delete="setItemToDelete"
+                              @edit="edit"
+                        />
                     </div>
-                    <!--TODO: implement pagination-->
-                    <!--<div class="w-full mt-6 flex justify-end">-->
-                    <!--<pagination />-->
-                    <!--</div>-->
+                    <div class="w-full mt-6 flex justify-end">
+                        <pagination
+                                v-if="pagination.lastPage > 1"
+                                :current="pagination.current"
+                                :last-page="pagination.lastPage"
+                                @change="pageChangeHandle"
+                        />
+                    </div>
                 </div>
             </div>
         </div>
-        <details-modal
-            v-if="featuredItem"
-            :item="media.data.find(media => media.id === featuredItem)"
-            @close="featuredItem = null"
-        />
+
 
         <jet-dialog-modal :show="itemToDelete" @close="closeModal">
             <template #title>
@@ -64,6 +67,7 @@ import JetButton from '@/Jetstream/Button.vue';
 import JetDialogModal from '@/Jetstream/DialogModal.vue';
 import JetSecondaryButton from '@/Jetstream/SecondaryButton.vue';
 
+
 export default {
     name: 'Index',
 
@@ -82,7 +86,11 @@ export default {
     data() {
         return {
             featuredItem: null,
-            itemToDelete: null
+            itemToDelete: null,
+            pagination: {
+                current: this.media.meta?.current_page,
+                lastPage: this.media.meta?.last_page,
+            }
         };
     },
 
@@ -102,9 +110,25 @@ export default {
 
             this.itemToDelete = null;
         },
-
+        edit(id) {
+            this.$inertia.get(`moodle-media/${id}/edit`);
+        },
         closeModal() {
             this.itemToDelete = null;
+        },
+        pageChangeHandle(value) {
+            switch (value) {
+                case 'next':
+                    this.pagination.current += 1;
+                    break;
+                case 'previous':
+                    this.pagination.current -= 1;
+                    break;
+                default:
+                    this.pagination.current = value;
+            }
+
+            this.$inertia.visit(`/moodle-media?page=${this.pagination.current}`);
         }
     }
 }

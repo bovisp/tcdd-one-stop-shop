@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Http\Requests\StoreMoodleMediaRequest;
 use App\Http\Resources\MoodleMediaCollection;
 use App\Http\Resources\MoodleMediaLicenseCollection;
+use App\Http\Resources\MoodleMediaResource;
 use App\Models\MoodleMedia;
 use App\Models\MoodleMediaLicense;
 use Illuminate\Http\Request;
@@ -28,13 +29,30 @@ class MoodleMediaController extends Controller
     }
 
     /**
+     * @param Request $request
      * @return \Inertia\Response
      */
 
-    public function index()
+    public function index(Request $request)
     {
+        $query = MoodleMedia::with('moodleMediaLicense');
+
+        $data = $request->get('page') !== '0'
+            ? $query->paginate(10)
+            : $query->limit(10)->get();
+
         return Inertia::render('MoodleMedia/Index', [
-            'media' => MoodleMediaCollection::make(MoodleMedia::all()),
+            'media' => MoodleMediaCollection::make($data),
+        ]);
+    }
+
+    public function edit($id)
+    {
+        $metadata = MoodleMedia::where('id', '=', $id)->first();
+
+        return Inertia::render('MoodleMedia/Edit', [
+
+            'metadata' => MoodleMediaResource::make($metadata)
         ]);
     }
 

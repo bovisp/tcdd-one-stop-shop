@@ -21,6 +21,10 @@ class MoodleMediaResource extends JsonResource
             'media' => $this->media,
             'license_id' => $this->license_id,
             'keywords' => $this->keywords,
+            'moodleMediaLicense' => [
+                'en' => optional($this->moodleMediaLicense)->name['english'] ?? '',
+                'fr' => optional($this->moodleMediaLicense)->name['french'] ?? '',
+            ],
         ];
     }
 }

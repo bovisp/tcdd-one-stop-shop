@@ -98,5 +98,9 @@ export default {
     edit: 'Edit',
     moodle_views_completions: 'Moodle views and completions',
     views: 'Views',
-    completions: 'Completions'
+    completions: 'Completions',
+    moodle_catalogue: 'Moodle Catalogue',
+    add_catalogue: 'Add Catalogue',
+    add_moodle_catalogue:'Add Moodle Catalogue',
+    keyword:'search'
 };

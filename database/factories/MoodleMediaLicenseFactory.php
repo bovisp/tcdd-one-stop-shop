@@ -17,8 +17,8 @@ class MoodleMediaLicenseFactory extends Factory
     public function definition()
     {
         return [
-            'name' => $this->faker->words($nb = 3, $asText = false),
-            'description' => $this->faker->words($nb = 3, $asText = false),
+            'name' => ["english"=> "en-name","french" =>"fr-nom"],
+            'description' => ["english"=> "en-description","french" =>"fr-description"],
         ];
     }
 }
