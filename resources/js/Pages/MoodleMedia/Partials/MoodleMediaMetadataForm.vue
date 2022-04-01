@@ -16,7 +16,13 @@
 
             <div class="col-span-12">
                 <jet-label for="media" :value="$t('media')" />
-                <jet-input id="media" type="file" class="mt-1 block w-full" v-model="form.media" required/>
+                <jet-input
+                    id="media"
+                    type="file"
+                    class="mt-1 block w-full"
+                    @input="form.media = $event.target.files[0]"
+                    required
+                />
             </div>
 
             <div class="col-span-12">
@@ -37,7 +43,6 @@
                     v-model="form.description_fr" required></textarea>
             </div>
 
-
             <div class="col-span-12">
                 <jet-label for="license" :value="$t('license_id')" />
                 <v-select
@@ -48,7 +53,6 @@
                 />
             </div>
 
-
             <div class="col-span-12">
                 <jet-label for="keywords_en" :value="$t('keywords_en')" />
                 <v-select id="keywords_en" multiple v-model="form.keywords_en" taggable />
@@ -58,8 +62,6 @@
                 <jet-label for="keywords_fr" :value="$t('keywords_fr')" />
                 <v-select id="keywords_fr" multiple v-model="form.keywords_fr" taggable />
             </div>
-
-
         </template>
 
         <template #actions>
@@ -84,9 +86,8 @@ export default {
     name: 'CourseMetadataForm',
 
     props: {
-        licenses :Array,
-        metadata: Object
-
+        licenses: Array,
+        metadata: Object,
     },
     components: {
         JetButton,
@@ -112,16 +113,17 @@ export default {
             },
         }
     },
-    // created() {
-    //     if (Object.keys(this.metadata).length) this.fillForm();
-    // },
-
+    created() {
+        if (Object.keys(this.metadata).length) this.fillForm();
+    },
     methods: {
         submit() {
             if (Object.keys(this.metadata).length) {
                 this.$inertia.patch(`/moodle-media/${this.metadata.id}`, this.form);
             } else {
-                this.$inertia.post('/moodle-media', this.form);
+                this.$inertia.post('/moodle-media', this.form, {
+                    forceFormData: true,
+                });
             }
         },
         fillForm() {

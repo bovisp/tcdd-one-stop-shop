@@ -16,11 +16,9 @@ use Inertia\Inertia;
 
 class MoodleMediaController extends Controller
 {
-
     /**
      * @return \Inertia\Response
      */
-
     public function create()
     {
         return Inertia::render('MoodleMedia/Create', [
@@ -32,7 +30,6 @@ class MoodleMediaController extends Controller
      * @param Request $request
      * @return \Inertia\Response
      */
-
     public function index(Request $request)
     {
         $query = MoodleMedia::with('moodleMediaLicense');
@@ -51,7 +48,6 @@ class MoodleMediaController extends Controller
         $metadata = MoodleMedia::where('id', '=', $id)->first();
 
         return Inertia::render('MoodleMedia/Edit', [
-
             'metadata' => MoodleMediaResource::make($metadata)
         ]);
     }
@@ -60,7 +56,6 @@ class MoodleMediaController extends Controller
      * @param StoreMoodleMediaRequest $request
      * @return \Illuminate\Http\RedirectResponse
      */
-
     public function store(StoreMoodleMediaRequest $request)
     {
         $filename = Str::uuid() . '.' . $request->file('media')->extension();
@@ -74,17 +69,15 @@ class MoodleMediaController extends Controller
         return Redirect::route('moodle-media.index');
     }
 
-
     /**
      * @param $id
      * @return \Illuminate\Http\RedirectResponse
      */
-
     public function destroy($id)
     {
         MoodleMedia::where('id', '=', $id)->delete();
-        return Redirect::route('moodle-media.index');
 
+        return Redirect::route('moodle-media.index');
     }
 
     /**
@@ -92,18 +85,18 @@ class MoodleMediaController extends Controller
      * @param $moodleMedia
      * @return \Illuminate\Http\RedirectResponse
      */
-
     public function update(StoreMoodleMediaRequest $request, $moodleMedia)
     {
         $filename = Str::uuid() . '.' . $request->getFile()->getClientOriginalExtension();
 
         $request->getFile()->storeAs('media', $filename);
 
-        MoodleMedia::query()->where('id', '=', $moodleMedia)->update(array_merge($request->getPayload(),[
-            'media' => $filename
-        ]));
+        MoodleMedia::query()
+            ->where('id', '=', $moodleMedia)
+            ->update(array_merge($request->getPayload(), [
+                'media' => $filename
+            ]));
 
         return Redirect::route('moodle-media.index');
-
     }
 }
