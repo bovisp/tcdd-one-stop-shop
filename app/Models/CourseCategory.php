@@ -11,22 +11,17 @@ class CourseCategory extends Model
 {
     use HasFactory;
 
-    /**
-     * @var array
-         */
+    /** @var string[] */
     protected $fillable = [
         'category_name'
     ];
-    /**
-     * @var array
-     */
+
+    /** @var string[] */
     protected $casts = [
         'category_name' => 'array'
     ];
 
-    /**
-     * @var array
-     */
+    /** @var string[] */
     protected $visible = ['category_name'];
 
     public function moodleCourses() : HasMany

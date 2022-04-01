@@ -3,12 +3,10 @@
 namespace App\Models\Moodle;
 
 use App\Traits\ReadOnlyModel;
-use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
 class UserInformation extends Model
 {
-    use HasFactory;
     use ReadOnlyModel;
 
     /** @var string */

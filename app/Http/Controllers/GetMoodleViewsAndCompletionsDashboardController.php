@@ -35,11 +35,10 @@ class GetMoodleViewsAndCompletionsDashboardController extends Controller
                 'top_five' => $this->repo->getTopFiveCourses($filters)->toArray(),
             ],
             'completions' => [
-                // TODO: get queries for completions
-                'by_fiscal_year' => [],
-                'by_fy_and_quarter' => [],
-                'by_language' => [],
-                'top_five' => [],
+                'by_fiscal_year' => $this->repo->getCompletionsByFiscalYear($filters)->toArray(),
+                'by_fy_and_quarter' => $this->repo->getCompletionsByFiscalYearAndQuarter($filters)->toArray(),
+                'by_language' => $this->repo->getCompletionsByLanguage($filters)->toArray(),
+                'top_five' => $this->repo->getTopFiveCompletedCourses($filters)->toArray(),
             ],
             'meta' => [
                 'fiscal_years' => FiscalYearCollection::make(FiscalYear::all()),

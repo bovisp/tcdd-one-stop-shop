@@ -5,7 +5,7 @@ namespace App\Models\Moodle;
 use App\Traits\ReadOnlyModel;
 use Illuminate\Database\Eloquent\Model;
 
-class MdlCourse extends Model
+class MdlBadge extends Model
 {
     use ReadOnlyModel;
 
@@ -17,7 +17,7 @@ class MdlCourse extends Model
 
     /** @var string[] */
     protected $visible = [
-        'id', 'name'
+        'id',
+        'name'
     ];
-
 }
