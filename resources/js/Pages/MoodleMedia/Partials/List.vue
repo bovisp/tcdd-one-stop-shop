@@ -5,7 +5,7 @@
             <div class=" shadow-lg flex flex-wrap w-full lg:w-4/5 mx-auto">
                 <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
                     <div class="bg-white w-full md:w-2/3">
-                        <img src="{{ item.media }}" alt="media">
+                        <img class="object-cover h-10 w-10 w-full" v-bind:src=" item.media " alt="media">
 
                     </div>
                     <div class="w-full lg:w-1/5 lg:border-right lg:border-solid text-center md:text-left">

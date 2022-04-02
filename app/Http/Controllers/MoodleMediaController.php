@@ -58,12 +58,10 @@ class MoodleMediaController extends Controller
      */
     public function store(StoreMoodleMediaRequest $request)
     {
-        $filename = Str::uuid() . '.' . $request->file('media')->extension();
-
-        $request->getFile()->storeAs('media', $filename);
+        $media =$request->getFile();
 
         MoodleMedia::create(array_merge($request->getPayload(), [
-            'media' => $filename
+            'media' => $media->store('media')
         ]));
 
         return Redirect::route('moodle-media.index');
@@ -87,14 +85,12 @@ class MoodleMediaController extends Controller
      */
     public function update(StoreMoodleMediaRequest $request, $moodleMedia)
     {
-        $filename = Str::uuid() . '.' . $request->getFile()->getClientOriginalExtension();
-
-        $request->getFile()->storeAs('media', $filename);
+        $media =$request->getFile();
 
         MoodleMedia::query()
             ->where('id', '=', $moodleMedia)
             ->update(array_merge($request->getPayload(), [
-                'media' => $filename
+                'media' => $media->store('media')
             ]));
 
         return Redirect::route('moodle-media.index');
