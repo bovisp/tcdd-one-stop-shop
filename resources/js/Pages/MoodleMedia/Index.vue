@@ -24,10 +24,10 @@
                     </div>
                     <div class="w-full mt-6 flex justify-end">
                         <pagination
-                                v-if="pagination.lastPage > 1"
-                                :current="pagination.current"
-                                :last-page="pagination.lastPage"
-                                @change="pageChangeHandle"
+                            v-if="pagination.lastPage > 1"
+                            :current="pagination.current"
+                            :last-page="pagination.lastPage"
+                            @change="pageChangeHandle"
                         />
                     </div>
                 </div>
@@ -104,8 +104,6 @@ export default {
         },
 
         deleteItem() {
-            console.log('delete item: ' + this.itemToDelete);
-
             this.$inertia.delete(`/moodle-media/${this.itemToDelete}`);
 
             this.itemToDelete = null;

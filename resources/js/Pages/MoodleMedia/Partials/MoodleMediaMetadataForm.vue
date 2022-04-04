@@ -21,7 +21,7 @@
                     type="file"
                     class="mt-1 block w-full"
                     @input="form.media = $event.target.files[0]"
-                    required
+                    :required="! isEditing"
                 />
             </div>
 
@@ -113,8 +113,15 @@ export default {
             },
         }
     },
+
+    computed: {
+        isEditing() {
+            return Boolean(Object.keys(this.metadata).length);
+        }
+    },
+
     created() {
-        if (Object.keys(this.metadata).length) this.fillForm();
+        if (this.isEditing) this.fillForm();
     },
     methods: {
         submit() {
@@ -127,13 +134,13 @@ export default {
             }
         },
         fillForm() {
-            this.form.title_en = this.metadata.title_en;
-            this.form.title_fr = this.metadata.title_fr;
+            this.form.title_en = this.metadata.title?.english;
+            this.form.title_fr = this.metadata.title?.french;
             this.form.license_id = this.metadata.license_id;
-            this.form.keywords_en = this.metadata.keywords_en;
-            this.form.keywords_fr = this.metadata.keywords_fr;
-            this.form.description_en = this.metadata.description_en;
-            this.form.description_fr = this.metadata.description_fr;
+            this.form.keywords_en = this.metadata.keywords?.english;
+            this.form.keywords_fr = this.metadata.keywords?.french;
+            this.form.description_en = this.metadata.description?.english;
+            this.form.description_fr = this.metadata.description?.french;
         }
     }
 }

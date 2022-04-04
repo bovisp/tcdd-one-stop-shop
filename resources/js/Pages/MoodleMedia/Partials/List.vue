@@ -1,40 +1,56 @@
 <template>
-    <div v-for="item in items" >
-    <div class="container mt-32 mx-auto p-4 md:p-0">
-            <!--Card 1-->
-            <div class=" shadow-lg flex flex-wrap w-full lg:w-4/5 mx-auto">
-                <div class="border-r border-b border-l border-gray-400 lg:border-l-0 lg:border-t lg:border-gray-400 bg-white rounded-b lg:rounded-b-none lg:rounded-r p-4 flex flex-col justify-between leading-normal">
-                    <div class="bg-white w-full md:w-2/3">
-                        <img class="object-cover h-10 w-10 w-full" v-bind:src=" item.media " alt="media">
-
-                    </div>
-                    <div class="w-full lg:w-1/5 lg:border-right lg:border-solid text-center md:text-left">
-                        <div class="text-gray-900 font-bold text-xl mb-2">
-                            {{ item.title.english }} /  {{ item.title.french }}
+    <div>
+        <div class="mt-3" v-for="item in items">
+            <div class="mx-auto p-4 md:p-0">
+                <div class="shadow-lg flex flex-wrap w-full">
+                    <div class="w-full p-4 flex justify-between leading-normal">
+                        <img class="object-cover h-20 w-20 rounded" :src="item.media" alt="media">
+                        <div class="flex-1 ml-4 mr-4">
+                            <div v-if="$i18n.locale === 'en'" class="text-gray-900 font-bold text-xl">
+                                {{ item.title.english }}
+                            </div>
+                            <div v-if="$i18n.locale === 'fr'" class="text-gray-900 font-bold text-xl">
+                                {{ item.title?.french }}
+                            </div>
+                            <p v-if="$i18n.locale === 'en'" class="text-gray-700 text-base">
+                                {{ item.description?.english.substring(0,199) }}
+                            </p>
+                            <p v-if="$i18n.locale === 'fr'" class="text-gray-700 text-base">
+                                {{ item.description?.french.substring(0,199) }}
+                            </p>
+                            <p class="text-gray-700 text-base">
+                                License: {{ item.moodleMediaLicense[$i18n.locale] }}
+                            </p>
+                            <div v-if="$i18n.locale === 'en'" class="flex text-gray-700 text-base">
+                            <span
+                                v-for="key in item.keywords.english"
+                                class="mr-4 bg-gray-200 px-2 py-1 rounded-lg"
+                            >
+                                {{ key }}
+                            </span>
+                            </div>
+                            <div v-if="$i18n.locale === 'fr'" class="flex text-gray-700 text-base">
+                            <span
+                                v-for="key in item.keywords.french"
+                                class="mr-4 bg-gray-200 px-2 py-1 rounded-lg"
+                            >
+                                {{ key }}
+                            </span>
+                            </div>
                         </div>
-                        <p class="text-gray-700 text-base">
-                            {{ item.description.english }}  / {{ item.description.french }}
-                        </p>
-                        <p class="text-gray-700 text-base">
-                            License: {{ item.moodleMediaLicense.en }} / {{ item.moodleMediaLicense.fr }}
-                        </p>
-                        <p class="text-gray-700 text-base">
-                            {{ item.keywords.english }} / {{ item.keywords.french }}
-
-                        </p>
-                    </div>
-                    <div class="flex items-center">
-                        <div class="text-sm">
-                            <a href="#" @click="$emit('edit', item.id)">{{ $t('edit') }}</a>
-                            <a href="#" class="text-red-500 underline ml-2" @click="$emit('delete', item.id)">
-                            {{ $t('delete') }}
-                            </a>
+                        <div class="flex items-center">
+                            <div class="text-sm">
+                                <a href="#" @click="$emit('edit', item.id)">{{ $t('edit') }}</a>
+                                <a href="#" class="text-red-500 underline ml-2" @click="$emit('delete', item.id)">
+                                    {{ $t('delete') }}
+                                </a>
+                            </div>
                         </div>
                     </div>
-                </div>
                 </div>
             </div>
         </div>
+    </div>
 </template>
 
 <script>
@@ -44,9 +60,3 @@ export default {
     props: ['items'],
 }
 </script>
-
-<style scoped>
-."w-1/2" {
-    width: 50%;
-}
-</style>

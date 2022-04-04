@@ -2,8 +2,13 @@
 
 namespace App\Http\Resources;
 
+use App\Models\MoodleMedia;
+use App\Values\MediaUrl;
 use Illuminate\Http\Resources\Json\JsonResource;
 
+/**
+ * @mixin MoodleMedia
+ */
 class MoodleMediaResource extends JsonResource
 {
     /**
@@ -18,7 +23,7 @@ class MoodleMediaResource extends JsonResource
             'id' => $this->id,
             'title' => $this->title,
             'description' => $this->description,
-            'media' => $this->media,
+            'media' => (new MediaUrl($this->media))->__toString(),
             'license_id' => $this->license_id,
             'keywords' => $this->keywords,
             'moodleMediaLicense' => [

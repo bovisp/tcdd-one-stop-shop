@@ -18,7 +18,7 @@ class StoreMoodleMediaRequest extends FormRequest
             'title_fr' => 'required',
             'description_en' => 'required',
             'description_fr' => 'required',
-            'media' => 'required',
+            'media' => $this->route()->getName() === 'moodle-media.update' ? '' : 'required',
             'license_id' => 'required',
             'keywords_en' => 'required',
             'keywords_fr' => 'required',

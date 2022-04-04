@@ -5,6 +5,7 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
+use Illuminate\Database\Eloquent\Relations\HasOne;
 
 class MoodleMedia extends Model
 {
@@ -34,9 +35,9 @@ class MoodleMedia extends Model
     protected $visible = ['title','description','media','license_id','keywords'];
 
 
-    public function moodleMediaLicense() : BelongsTo
+    public function moodleMediaLicense() : HasOne
     {
-        return $this->belongsTo(MoodleMediaLicense::class);
+        return $this->hasOne(MoodleMediaLicense::class, 'id', 'license_id');
     }
 
 }

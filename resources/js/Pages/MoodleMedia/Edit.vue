@@ -8,6 +8,7 @@
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
                 <moodle-media-metadata-form
+                    :licenses="licenses.data"
                     :metadata="metadata?.data || {}"
                 />
             </div>
@@ -22,7 +23,7 @@ import MoodleMediaMetadataForm from './Partials/MoodleMediaMetadataForm';
 export default {
     name: 'Edit',
 
-    props: ['metadata'],
+    props: ['metadata', 'licenses'],
 
     components: {  AppLayout, MoodleMediaMetadataForm },
 }

@@ -48,7 +48,8 @@ class MoodleMediaController extends Controller
         $metadata = MoodleMedia::where('id', '=', $id)->first();
 
         return Inertia::render('MoodleMedia/Edit', [
-            'metadata' => MoodleMediaResource::make($metadata)
+            'metadata' => MoodleMediaResource::make($metadata),
+            'licenses' => MoodleMediaLicenseCollection::make(MoodleMediaLicense::all()),
         ]);
     }
 
@@ -58,11 +59,15 @@ class MoodleMediaController extends Controller
      */
     public function store(StoreMoodleMediaRequest $request)
     {
-        $media =$request->getFile();
+        $media = $request->getFile();
 
-        MoodleMedia::create(array_merge($request->getPayload(), [
-            'media' => $media->store('media')
-        ]));
+        $filename = Str::uuid() . '.' . $media->extension();
+
+        if ($media->storeAs('public/images', $filename)) {
+            MoodleMedia::create(array_merge($request->getPayload(), [
+                'media' => $filename
+            ]));
+        }
 
         return Redirect::route('moodle-media.index');
     }
@@ -85,13 +90,9 @@ class MoodleMediaController extends Controller
      */
     public function update(StoreMoodleMediaRequest $request, $moodleMedia)
     {
-        $media =$request->getFile();
-
         MoodleMedia::query()
             ->where('id', '=', $moodleMedia)
-            ->update(array_merge($request->getPayload(), [
-                'media' => $media->store('media')
-            ]));
+            ->update($request->getPayload());
 
         return Redirect::route('moodle-media.index');
     }
