@@ -90,7 +90,6 @@
 
         methods: {
             submit() {
-                console.log('submit: ' + Date.now())
                 this.$inertia.get(`/course-catalogues/`,this.form);
             },
             back() {
