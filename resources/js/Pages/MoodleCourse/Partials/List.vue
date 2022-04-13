@@ -1,7 +1,7 @@
 <template>
     <div class="py-2 align-middle inline-block w-full">
-        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <table class="min-w-full divide-y divide-gray-200">
+        <div class="shadow border-b border-gray-200 sm:rounded-lg max-w-full">
+            <table class="w-full table-fixed divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
                         <th scope="col" class="w-1/2 px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
@@ -24,7 +24,7 @@
                     </tr>
                     <template v-else>
                         <tr v-for="item in items">
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="px-4 py-4">
                                 <div class="flex items-center">
                                     <div v-if="$i18n.locale === 'en'" class="text-sm font-medium text-gray-900">
                                         {{ item.course_name_en }}
@@ -34,19 +34,19 @@
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="px-4 py-4 whitespace-nowrap">
                                 <div class="flex items-center">
                                     <div class="text-sm font-medium text-gray-900">
                                         {{ item.category[$i18n.locale] }}
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="px-4 py-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">
                                     {{ item.publish_date }}
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap text-right text-sm underline">
+                            <td class="px-2 py-4 whitespace-nowrap text-right text-sm underline">
                                 <a href="#" @click="$emit('details', item.id)">{{ $t('details') }}</a>
                                 <a href="#" @click="$emit('edit', item.id)" class="ml-2">{{ $t('edit') }}</a>
                                 <a href="#" class="text-red-500 underline ml-2" @click="$emit('delete', item.id)">

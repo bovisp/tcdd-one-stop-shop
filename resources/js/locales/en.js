@@ -103,5 +103,6 @@ export default {
     moodle_catalogue: 'Moodle Catalogue',
     add_catalogue: 'Add Catalogue',
     add_moodle_catalogue:'Add Moodle Catalogue',
-    keyword:'search'
+    keyword:'search',
+    search: 'Search',
 };

@@ -105,5 +105,6 @@ export default {
     moodle_catalogue: 'Moodle Catalogue',
     add_catalogue: 'Ajouter Catalogue',
     add_moodle_catalogue:'Ajouter Moodle Catalogue',
-    keyword: 'Mots-clés'
+    keyword: 'Mots-clés',
+    search: 'Recherche',
 };

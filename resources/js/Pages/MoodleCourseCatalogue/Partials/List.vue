@@ -1,21 +1,20 @@
 <template>
     <div class="py-2 align-middle inline-block w-full">
-        <div class="shadow overflow-hidden border-b border-gray-200 sm:rounded-lg">
-            <table class="min-w-full divide-y divide-gray-200">
+        <div class="shadow border-b border-gray-200 sm:rounded-lg max-w-full">
+            <table class="w-full table-fixed divide-y divide-gray-200">
                 <thead class="bg-gray-50">
                     <tr>
-
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Title
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {{ $t('title') }}
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            language
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {{ $t('language') }}
                         </th>
-                        <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                        Topics
+                        <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {{ $t('topics') }}
                         </th>
-                         <th scope="col" class="px-6 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
-                            Publish Date
+                         <th scope="col" class="px-4 py-3 text-left text-xs font-medium text-gray-500 uppercase tracking-wider">
+                            {{ $t('publish_date') }}
                         </th>
                     </tr>
                 </thead>
@@ -27,29 +26,30 @@
                     </tr>
                     <template v-else>
                         <tr v-for="item in items.data">
-                            <td class="px-6 py-4 whitespace-nowrap truncate">
+                            <td class="p-4 break-normal">
                                 <div class="flex items-center">
-                                    <div class="text-sm font-medium text-gray-900 ">
+                                    <div class="text-sm font-medium text-gray-900">
                                         {{ item.title }}
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="p-4">
                                 <div class="flex items-center">
-                                    <div  class="text-sm font-medium text-gray-900">
+                                    <div class="text-sm font-medium text-gray-900">
                                         {{ item.language }}
-
                                     </div>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="p-4">
                                 <div class="flex items-center">
-                                    <div v-for="cat in item.categories" class="text-sm font-medium text-gray-900">
-                                        {{ cat.en }} - {{ cat.fr }}  ,
-                                    </div>
+                                    <ul class="text-sm font-medium text-gray-900">
+                                        <li v-for="cat in item.categories" >
+                                            {{ cat.en }} / {{ cat.fr }}
+                                        </li>
+                                    </ul>
                                 </div>
                             </td>
-                            <td class="px-6 py-4 whitespace-nowrap">
+                            <td class="p-4 whitespace-nowrap">
                                 <div class="text-sm text-gray-900">
                                     {{ item.publish_date }}
                                 </div>
@@ -59,36 +59,19 @@
                 </tbody>
             </table>
         </div>
-        <!--<div class="p-5 flex justify-end">-->
-            <!--<Link class="px-2" :href="items.links.prev">Previous</link>-->
-            <!--<Link class="px-2" :href="items.links.next">Next</link>-->
-        <!--</div>-->
     </div>
 </template>
 
 <script>
-    import { Link } from '@inertiajs/inertia-vue3'
+    import { Link } from '@inertiajs/inertia-vue3';
 
     export default {
         components:{
           Link,
         },
-    name: 'List',
+
+        name: 'List',
 
         props: ['items'],
 }
 </script>
-
-<style scoped>
-."w-1/2" {
-    width: 50%;
-}
-.truncate {
-    overflow: hidden;
-    text-overflow: ellipsis;
-    /*white-space: nowrap;*/
-}
- td {
-    word-break: break-all;
-}
-</style>
