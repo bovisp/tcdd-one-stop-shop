@@ -107,4 +107,5 @@ export default {
     external_course_views_completions :'External course views and completions',
     add_external_course :'Add External Course',
     external_course:'External Course',
+    search: 'Search',
 };
