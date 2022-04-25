@@ -50,6 +50,12 @@
                                 >
                                     {{ $t('moodle_media') }}
                                 </jet-nav-link>
+                                <jet-nav-link
+                                        :href="route('external-course.dashboard')"
+                                        :active="route().current('external-course.dashboard')"
+                                >
+                                    {{ $t('external_course') }}
+                                </jet-nav-link>
                             </div>
                         </div>
 

@@ -1,3 +1,4 @@
+
 <?php
 
 use App\Http\Controllers\GetMoodleViewsAndCompletionsDashboardController;
@@ -9,7 +10,8 @@ use App\Http\Controllers\MoodleMediaController;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\MoodleCourseCatalogueController;
-use App\Http\Controllers\GetCatalogueDashboardController;
+use App\Http\Controllers\ExternalCourseController;
+use App\Http\Controllers\GetExternalCourseViewsAndCompletionsDashboardController;
 
 /*
 |--------------------------------------------------------------------------
@@ -52,4 +54,9 @@ Route::middleware(['auth:sanctum', 'verified'])->group(function () {
 
     Route::resource('course-catalogues', MoodleCourseCatalogueController::class);
 
+    Route::resource('external-course', ExternalCourseController::class)
+        ->except('show', 'index', 'destroy','update','edit');
+
+    Route::get('external-course/dashboard', GetExternalCourseViewsAndCompletionsDashboardController::class)
+        ->name('external-course.dashboard');
 });
