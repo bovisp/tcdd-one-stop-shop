@@ -13,7 +13,7 @@ class MdlCourse extends Model
     protected $connection = 'moodle';
 
     /** @var string */
-    protected $table = 'mdl_badge';
+    protected $table = 'mdl_course';
 
     /** @var string[] */
     protected $visible = [

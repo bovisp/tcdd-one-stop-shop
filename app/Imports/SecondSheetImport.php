@@ -3,6 +3,7 @@
 namespace App\Imports;
 
 use App\Models\MoodleCourseCatalogue;
+use Illuminate\Contracts\Queue\ShouldQueue;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Collection;
 use Illuminate\Support\Facades\DB;
@@ -10,11 +11,12 @@ use Illuminate\Validation\Rule;
 use Maatwebsite\Excel\Concerns\ToCollection;
 use Maatwebsite\Excel\Concerns\ToModel;
 use Maatwebsite\Excel\Concerns\Importable;
+use Maatwebsite\Excel\Concerns\WithChunkReading;
 use Maatwebsite\Excel\Concerns\WithStartRow;
 use Maatwebsite\Excel\Concerns\WithValidation;
 
 
-class SecondSheetImport implements ToCollection, WithStartRow
+class SecondSheetImport implements ToCollection, WithStartRow, WithChunkReading, ShouldQueue
 {
 
     use Importable;
@@ -66,5 +68,9 @@ class SecondSheetImport implements ToCollection, WithStartRow
             ? Carbon::createFromFormat('m/d/y', $cleanDate)
             : Carbon::parse(\PhpOffice\PhpSpreadsheet\Shared\Date::excelToDateTimeObject($cleanDate));
         return $publishDate;
+    }
+    public function chunkSize(): int
+    {
+        return 1000;
     }
 }
