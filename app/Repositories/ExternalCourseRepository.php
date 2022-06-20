@@ -106,7 +106,7 @@ class ExternalCourseRepository implements ExternalCourseContract
     {
         $views = DB::table('external_course_views')
             ->select('lesson as name')
-            ->selectRaw('count(*) as total, id')
+            ->selectRaw('sum(session) as total, id')
             ->selectRaw("CASE WHEN (MONTH(date)) <= 3 THEN CONCAT('FY',YEAR(date)-1,'-',YEAR(date)) ELSE CONCAT('FY',YEAR(date),'-',YEAR(date)) END AS fiscal_year")
             ->selectRaw("CASE WHEN QUARTER(date) IN (1,2,3) THEN 'Q4' WHEN QUARTER(date) IN (4,5,6) THEN 'Q1' WHEN QUARTER(date) IN (7,8,9) THEN 'Q2' WHEN QUARTER(date) IN (10,11,12) THEN 'Q3' END AS quarter")
 
