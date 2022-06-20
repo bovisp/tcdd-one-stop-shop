@@ -9,13 +9,15 @@ class ExternalCourseCompletion extends Model
 {
     use HasFactory;
 
-    protected $table = 'external_course_completions';
     protected $fillable = [
-        'lesson','language','date_completed'
+        'lesson',
+        'language_id',
+        'date_completed',
     ];
 
-    protected $visible =[
-        'lesson','language','date_completed'
-
+    protected $visible = [
+        'lesson',
+        'language_id',
+        'date_completed',
     ];
 }

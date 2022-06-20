@@ -15,11 +15,10 @@ class CreateExternalCourseViewTable extends Migration
     {
         Schema::create('external_course_views', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('language_id');
             $table->string('lesson');
-            $table->string('language');
             $table->string('session');
             $table->date('date');
-
             $table->timestamps();
         });
     }

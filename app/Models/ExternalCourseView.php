@@ -9,13 +9,17 @@ class ExternalCourseView extends Model
 {
     use HasFactory;
 
-    protected $table = 'external_course_views';
     protected $fillable = [
-        'lesson','language','session','date'
+        'lesson',
+        'language_id',
+        'session',
+        'date',
     ];
 
-    protected $visible =[
-        'lesson','language','session','date'
-
+    protected $visible = [
+        'lesson',
+        'language_id',
+        'session',
+        'date',
     ];
 }

@@ -3,23 +3,18 @@
 namespace App\Http\Controllers;
 
 use App\Imports\Comet\ExternalCourseImport;
-use App\Models\ExternalCourse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Redirect;
 use Inertia\Inertia;
 
 class ExternalCourseController extends Controller
 {
-
-
     /**
      * @return \Inertia\Response
      */
     public function create()
     {
-         return Inertia::render('ExternalCourse/Create',[
-
-         ]);
+         return Inertia::render('ExternalCourse/Create');
     }
 
     /**
@@ -36,9 +31,12 @@ class ExternalCourseController extends Controller
         $this->validate($request, array(
             'externalCourse'   => 'max:10240|required|mimes:csv,xlsx',
         ));
+
         $courseFile = $request->externalCourse;
 
-        $file =  (new ExternalCourseImport())->import($courseFile, 'local', \Maatwebsite\Excel\Excel::XLSX);
+        $file =  (new ExternalCourseImport())
+            ->import($courseFile, 'local', \Maatwebsite\Excel\Excel::XLSX);
+
         return Redirect::route('external-course.dashboard');
     }
 }

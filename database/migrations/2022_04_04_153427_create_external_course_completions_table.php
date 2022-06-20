@@ -15,8 +15,8 @@ class CreateExternalCourseCompletionsTable extends Migration
     {
         Schema::create('external_course_completions', function (Blueprint $table) {
             $table->id();
+            $table->unsignedBigInteger('language_id');
             $table->string('lesson');
-            $table->string('anguage');
             $table->date('date_completed');
 
             $table->timestamps();

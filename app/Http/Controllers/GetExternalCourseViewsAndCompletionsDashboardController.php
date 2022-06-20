@@ -21,23 +21,24 @@ class GetExternalCourseViewsAndCompletionsDashboardController extends Controller
     {
         $this->repo = $repo;
     }
-    public function __invoke(Request $request){
+
+    public function __invoke(Request $request) {
         $filters = MoodleCompletionFilter::fromRequest($request);
 
-        return Inertia::render('ExternalCourse/Dashboard', [
+        $data = [
             'views' => [
                 'by_fiscal_year' => $this->repo->getCourseViewsByFiscalYear($filters)->toArray(),
                 'by_fy_and_quarter' => $this->repo->getCourseViewsByFiscalYearAndQuarter($filters)->toArray(),
                 'by_language' => $this->repo->getCourseViewsByLanguage($filters)->toArray(),
                 'top_five' => $this->repo->getTopFiveCourses($filters)->toArray(),
             ],
-            'completions' => [
+                'completions' => [
                 'by_fiscal_year' => $this->repo->getCompletionsByFiscalYear($filters)->toArray(),
                 'by_fy_and_quarter' => $this->repo->getCompletionsByFiscalYearAndQuarter($filters)->toArray(),
                 'by_language' => $this->repo->getCompletionsByLanguage($filters)->toArray(),
                 'top_five' => $this->repo->getTopFiveCompletedCourses($filters)->toArray(),
             ],
-            'meta' => [
+                'meta' => [
                 'fiscal_years' => FiscalYearCollection::make(FiscalYear::all()),
                 'languages' => LanguageCollection::make(Language::all()),
                 'quarters' => QuarterCollection::make(Quarter::all()),
@@ -48,6 +49,8 @@ class GetExternalCourseViewsAndCompletionsDashboardController extends Controller
                     'subject' => $filters->getSubject() ?? 'views',
                 ]
             ]
-        ]);
+        ];
+
+        return Inertia::render('ExternalCourse/Dashboard', $data);
     }
 }
