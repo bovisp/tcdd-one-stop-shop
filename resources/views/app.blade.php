@@ -10,11 +10,14 @@
         <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700&display=swap">
 
         <!-- Styles -->
-        <link rel="stylesheet" href="{{ mix('css/app.css') }}">
+        {{-- <link rel="stylesheet" href="{{ mix('css/app.css') }}"> --}}
+        <link rel="stylesheet" href="{{asset('/css/app.css?' . explode('?', mix('/css/app.css'))[1])}}">
+
 
         <!-- Scripts -->
         @routes
-        <script src="{{ mix('js/app.js') }}" defer></script>
+        {{-- <script src="{{ mix('js/app.js') }}" defer></script> --}}
+        <script src="{{asset('/js/app.js?' . explode('?', mix('/js/app.js'))[1])}}"></script>
     </head>
     <body class="font-sans antialiased">
         @inertia
